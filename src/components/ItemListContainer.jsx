@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import ItemCount from './ItemCount';
-import Item from './products/item'
+import Item from './products/Item'
 
 const ItemListContainer = ({ titulo }) => {
     const [count, setCount] = useState(0) //seteo aca el contador
