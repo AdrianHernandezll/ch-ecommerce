@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import ItemCount from './ItemCount';
-import Item from './products/Item'
+import ItemList from './products/product/ItemList';
 
 const ItemListContainer = ({ titulo }) => {
     const [count, setCount] = useState(0) //seteo aca el contador
@@ -14,7 +14,7 @@ const ItemListContainer = ({ titulo }) => {
         <>
             <p className="text-center ">Hola bienvenido al {titulo} </p>
             {/* <ItemCount onAdd={onAdd} stock={8} initial={1} /> */}
-            <Item />
+            <ItemList />
         </>
     )
 }
