@@ -2,27 +2,25 @@ import React from 'react';
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton, Button } from '@material-ui/core'
 import { AddShoppingCart } from '@material-ui/icons';
 
+import useStyles from '../products/product/style'
 
-import useStyles from './product/style';
 
-
-const Item = ({ item }) => {
-
+const ItemDetail = ({ object }) => {
     const classes = useStyles();
     return (
         <Card className={classes.root} style={{ maxHeight: "450px", width: "100p%" }}>
-            <CardMedia className={classes.media} image={item.image} title={item.name} />
+            <CardMedia className={classes.media} image={object.image} title={object.name} />
             <CardContent>
                 <div className={classes.cardContent}>
                     <Typography variant="h5" gutterBottom>
-                        {item.name}
+                        {object.name}
                     </Typography>
                     <Typography variant="h5">
-                        ${item.price}
+                        ${object.price}
                     </Typography>
 
                 </div>
-                <Typography variant="body2" color="textSecondary">{item.description}</Typography>
+                <Typography variant="body2" color="textSecondary">{object.description}</Typography>
             </CardContent>
             <CardActions disableSpacing className={classes.cardActions}>
                 <Button variant="contained">Ver más</Button>
@@ -35,4 +33,4 @@ const Item = ({ item }) => {
     )
 }
 
-export default Item
+export default ItemDetail

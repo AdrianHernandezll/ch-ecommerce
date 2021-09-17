@@ -4,6 +4,7 @@ import React from 'react';
 
 import { Navbar } from './components';
 import ItemListContainer from './components/ItemListContainer';
+import ItemDetailContainer from './components/ItemDetailContainer';
 
 const titulo = 'MBD Store';
 
@@ -13,6 +14,7 @@ function App() {
       <Navbar />
       <span />
       <ItemListContainer titulo={titulo} />
+      <ItemDetailContainer />
     </div>
   );
 }

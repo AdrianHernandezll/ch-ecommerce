@@ -3,11 +3,11 @@ import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography } from '
 import { ShoppingCart } from '@material-ui/icons';
 
 import logo from '../../asset/logo.png'
-import makeStyles from './styles'
+import useStyles from './styles'
 
 const Navbar = () => {
 
-    const classes = makeStyles();
+    const classes = useStyles();
     return (
         <>
             <AppBar position="fixed" className={classes.appBar} color="inherit">
