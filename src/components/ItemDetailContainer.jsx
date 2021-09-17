@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 import ItemDetail from './Details/ItemDetail';
 
@@ -18,33 +18,38 @@ const ItemDetailContainer = () => {
     ];
     const unArray = Productos.find(productos => productos)
 
-    const newPromise = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(unArray)
-        }, 3000)
-    });
 
-    newPromise.then((response) => {
-        setObject(response)
-    })
-        .catch(error => console.log(error))
-        .finally('ok')
+    useEffect(() => {
+        const newPromise = new Promise((resolve, reject) => {
+            let res = '200'
+            if (res === '200') {
+                setTimeout(() => {
+                    resolve(unArray)
+                }, 3000)
+            }
 
-    console.log(newPromise)
+        });
+
+        newPromise.then((response) => {
+            setObject(response)
+        })
+            .catch(error => console.log(error))
+            .finally('ok')
+    }, [])
+
+
     const classes = useStyles();
+
+
 
     return (
 
         <main className={classes.content}>
             <div className={classes.toolbar} />
             <Grid container justifyContent="center" spacing={3}>
-                {object.map(objects => (
-                    <Grid item key={objects.id} xs={12} sm={6} md={4} lg={3}>
-                        <ItemDetail object={object} />
-                    </Grid>
-                ))
-                }
-
+                <Grid item key={object.id} xs={12} sm={6} md={4} lg={3}>
+                    <ItemDetail object={object} />
+                </Grid>
             </Grid>
         </main>
     )

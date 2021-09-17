@@ -13,7 +13,7 @@ function App() {
     <div>
       <Navbar />
       <span />
-      <ItemListContainer titulo={titulo} />
+      {/* <ItemListContainer titulo={titulo} /> */}
       <ItemDetailContainer />
     </div>
   );
