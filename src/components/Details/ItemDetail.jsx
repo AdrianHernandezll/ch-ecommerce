@@ -8,8 +8,8 @@ import useStyles from '../products/product/style'
 const ItemDetail = ({ object }) => {
     const classes = useStyles();
     return (
-        <Card className={classes.root} style={{ maxHeight: "450px", width: "100p%" }}>
-            <CardMedia className={classes.media} image={object.image} title={object.name} disabled={object.image !== ''} />
+        <Card className={classes.root} style={{ width: "100p%" }}>
+            <CardMedia className={classes.media} image={object.image} title={object.name} />
             <CardContent>
                 <div className={classes.cardContent}>
                     <Typography variant="h5" gutterBottom>
