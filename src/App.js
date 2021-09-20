@@ -1,7 +1,6 @@
 import React from 'react';
-// import Navbar from './components/Navbar/Navbar';
-// import Item from './components/products/item';
-
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { commerce } from './lib/commerce'
 import { Navbar } from './components';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
@@ -9,13 +8,22 @@ import ItemDetailContainer from './components/ItemDetailContainer';
 const titulo = 'MBD Store';
 
 function App() {
+
+
   return (
-    <div>
-      <Navbar />
-      <span />
-      {/* <ItemListContainer titulo={titulo} /> */}
-      <ItemDetailContainer />
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Switch>
+          <Route exact path="/" >
+            <ItemListContainer titulo={titulo} />
+          </Route>
+          <Route exact path="/detalle" component={ItemDetailContainer} />
+        </Switch>
+
+
+      </div>
+    </Router>
   );
 }
 
