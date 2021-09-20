@@ -34,3 +34,5 @@ const ItemDetail = ({ object }) => {
 }
 
 export default ItemDetail
+
+
