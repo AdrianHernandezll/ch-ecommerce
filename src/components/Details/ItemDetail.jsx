@@ -4,11 +4,13 @@ import { AddShoppingCart } from '@material-ui/icons';
 
 
 import useStyles from '../products/product/style'
-import { Link } from 'react-router-dom';
+
 
 
 const ItemDetail = ({ object }) => {
+    console.log(object);
     const classes = useStyles();
+
     return (
         <Card className={classes.root} style={{ width: "100p%" }}>
             <CardMedia className={classes.media} image={object.image} title={object.name} />
@@ -25,9 +27,6 @@ const ItemDetail = ({ object }) => {
                 <Typography variant="body2" color="textSecondary">{object.description}</Typography>
             </CardContent>
             <CardActions disableSpacing className={classes.cardActions}>
-                <Link to={`/detalle/{object.id}`}>
-                    <Button variant="contained">Ver más</Button>
-                </Link>
 
                 <IconButton aria-label="Add to Cart">
                     <AddShoppingCart />

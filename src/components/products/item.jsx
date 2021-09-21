@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton, Button } from '@material-ui/core'
 import { AddShoppingCart } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
 
 
@@ -26,7 +27,9 @@ const Item = ({ item }) => {
                 <Typography variant="body2" color="textSecondary">{item.description}</Typography>
             </CardContent>
             <CardActions disableSpacing className={classes.cardActions}>
-                <Button variant="contained">Ver más</Button>
+                <Link to={`/item/${item.id}`}>
+                    <Button variant="contained">Ver más</Button>
+                </Link>
                 <IconButton aria-label="Add to Cart">
                     <AddShoppingCart />
                 </IconButton>
