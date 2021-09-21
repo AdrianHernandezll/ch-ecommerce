@@ -11,16 +11,16 @@ import useStyles from './products/styles';
 
 const ItemDetailContainer = () => {
 
-    const [object, setObject] = useState([]);
+    const [object, setObject] = useState({});
     const [loading, setLoading] = useState(true)
 
-    const { idItem } = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
         getPromise
             .then((response) => {
-                if (idItem) {
-                    const itemFilter = response.filter((item) => parseInt(item.id) === parseInt(idItem))
+                if (id) {
+                    const itemFilter = response.filter((item) => parseInt(item.id) === parseInt(id))
                     setObject(itemFilter)
                     console.log(itemFilter)
                 } else {
@@ -30,7 +30,7 @@ const ItemDetailContainer = () => {
             })
             .catch(err => console.log(err))
             .finally(() => setLoading(false));
-    }, [idItem])
+    }, [id])
 
     const classes = useStyles();
 

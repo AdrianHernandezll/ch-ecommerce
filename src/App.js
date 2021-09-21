@@ -18,7 +18,7 @@ function App() {
             <ItemListContainer />
           </Route>
           <Route exact path="/category/:idCategory" component={ItemListContainer} />
-          <Route exact path='/item/:idItem' component={ItemDetailContainer} />
+          <Route exact path='/item/:id' component={ItemDetailContainer} />
         </Switch>
 
 
