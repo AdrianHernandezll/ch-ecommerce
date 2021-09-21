@@ -11,8 +11,6 @@ const ItemListContainer = () => {
 
     const { idCategory } = useParams();
 
-    console.log("??", idCategory);
-
     const onAdd = (cant) => {//declaro aca la funcion onadd aca para luego pasar los estados (props) a los hijos
         setCount(cant)
         console.log(cant);

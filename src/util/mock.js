@@ -1,3 +1,4 @@
+
 const Productos = [
     {
         id: 1,
@@ -114,10 +115,14 @@ export const getPromise = new Promise((resolve, reject) => {
 
 });
 
-export const newPromiseOne = new Promise((resolve) => {
-    setTimeout(() => {
-        resolve(Productos)
-    }, 3000)
-});
+
+export const detailPromise = new Promise((res, rej) => {
+    const auth = '200';
+    if (auth === '200') {
+        setTimeout(() => res(Productos), 3000)
+    } else {
+        rej('404')
+    }
+})
 
 

@@ -25,7 +25,7 @@ const ItemDetail = ({ object }) => {
                 <Typography variant="body2" color="textSecondary">{object.description}</Typography>
             </CardContent>
             <CardActions disableSpacing className={classes.cardActions}>
-                <Link to={`/detalle/${object.id}`}>
+                <Link to={`/detalle/{object.id}`}>
                     <Button variant="contained">Ver más</Button>
                 </Link>
 
