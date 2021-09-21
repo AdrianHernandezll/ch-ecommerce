@@ -5,17 +5,27 @@ import { getPromise } from '../../../util/mock';
 
 import useStyles from '../styles';
 
-const ItemList = () => {
+
+const ItemList = ({ idCategory }) => {
 
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true)
 
+
     useEffect(() => {
         getPromise
-            .then((response) => setItems(response))
+            .then((response) => {
+                if (idCategory) {
+                    const filtraCategoria = response.filter((producto) => producto.category === idCategory)
+                    setItems(filtraCategoria)
+                } else {
+                    setItems(response)
+                }
+
+            })
             .catch(err => console.log(err))
             .finally(() => setLoading(false));
-    }, [])
+    }, [idCategory])
 
 
     const classes = useStyles();

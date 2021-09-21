@@ -5,7 +5,6 @@ import { Navbar } from './components';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 
-const titulo = 'MBD Store';
 
 function App() {
 
@@ -16,9 +15,10 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path="/" >
-            <ItemListContainer titulo={titulo} />
+            <ItemListContainer />
           </Route>
-          <Route exact path="/detalle" component={ItemDetailContainer} />
+          <Route path="/category/:idCategory" component={ItemListContainer} />
+          <Route path="/detalle/:id" component={ItemDetailContainer} />
         </Switch>
 
 

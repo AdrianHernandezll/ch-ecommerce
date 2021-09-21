@@ -1,9 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, MenuItem, Menu, Typography, Button, Popover } from '@material-ui/core';
-import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
-
-
-
+import { AppBar, Toolbar, MenuItem, Menu, Typography } from '@material-ui/core';
 
 import logo from '../../asset/logo.png'
 import useStyles from './styles'
@@ -27,32 +23,15 @@ const Navbar = () => {
                         </Typography>
                     </NavLink>
                     <Typography variant="h6" component="div" spacing="3" sx={{ flexGrow: 3 }} >
-                        <NavLink exact to="/detalle">Productos</NavLink>
+                        <NavLink exact to="/category/plato">Plato</NavLink>
                     </Typography>
-                    <PopupState variant="popover" popupId="demo-popup-popover">
-                        {(popupState) => (
-                            <div>
-                                <Button variant="contained" {...bindTrigger(popupState)}>
-                                    Open Popover
-                                </Button>
-                                <Popover
-                                    {...bindPopover(popupState)}
-                                    anchorOrigin={{
-                                        vertical: 'bottom',
-                                        horizontal: 'center',
-                                    }}
-                                    transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'center',
-                                    }}
-                                >
-                                    <Typography sx={{ p: 2 }}>
-
-                                    </Typography>
-                                </Popover>
-                            </div>
-                        )}
-                    </PopupState>
+                    <NavLink exact to="/category/picada">Picada</NavLink>
+                    <Typography>
+                    </Typography>
+                    <NavLink exact to="/category/bebida">Bebida</NavLink>
+                    <Typography>
+                    </Typography>
+                    <NavLink exact to="/category/pizza">Pizzas</NavLink>
                     <Typography>
 
                     </Typography>

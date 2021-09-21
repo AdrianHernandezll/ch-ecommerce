@@ -2,7 +2,9 @@ import React from 'react';
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton, Button } from '@material-ui/core'
 import { AddShoppingCart } from '@material-ui/icons';
 
+
 import useStyles from '../products/product/style'
+import { Link } from 'react-router-dom';
 
 
 const ItemDetail = ({ object }) => {
@@ -23,7 +25,10 @@ const ItemDetail = ({ object }) => {
                 <Typography variant="body2" color="textSecondary">{object.description}</Typography>
             </CardContent>
             <CardActions disableSpacing className={classes.cardActions}>
-                <Button variant="contained">Ver más</Button>
+                <Link to={`/detalle/${object.id}`}>
+                    <Button variant="contained">Ver más</Button>
+                </Link>
+
                 <IconButton aria-label="Add to Cart">
                     <AddShoppingCart />
                 </IconButton>

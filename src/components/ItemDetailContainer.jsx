@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 import ItemDetail from './Details/ItemDetail';
 
+import { useParams } from 'react-router';
 import { newPromiseOne } from '../util/mock';
 import useStyles from './products/styles';
 
@@ -11,18 +12,18 @@ import useStyles from './products/styles';
 const ItemDetailContainer = () => {
 
     const [object, setObject] = useState([]);
+    const { itemId } = useParams();
 
     useEffect(() => {
-        newPromiseOne
-            .then((response) => setObject(response))
-            .catch(error => console.log(error))
-            .finally(() => 'ok')
-    }, [])
+        newPromiseOne.then(response => setObject(response.find(ident => ident.id === itemId)))
+
+    }, [itemId])
+
+
+
 
 
     const classes = useStyles();
-
-
 
     return (
 
