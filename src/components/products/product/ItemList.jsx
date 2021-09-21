@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 import Item from '../Item';
 import { getPromise } from '../../../util/mock';
