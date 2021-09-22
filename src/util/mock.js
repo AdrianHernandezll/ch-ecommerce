@@ -51,7 +51,7 @@ const Productos = [
     {
         id: 7
         , name: 'Falafel & vegetales salteados con crema de berenjenas'
-        , category: 'plato', description: 'Falafel con vegetales salteados (brócoli, morrón, zanahoria y jengibre, con toque de salsa de soja y vino chardonnay), acompañado de una crema de berenjena asada y cebolla caramelizada.',
+        , category: 'plato', description: 'Falafel con vegetales salteados (brócoli, morrón, zanahoria y jengibre, con toque de salsa de soja y vino chardonnay).',
         price: 550,
         image: 'https://www.tiendadealimentos.com.ar/wp-content/uploads/2021/03/falafel-y-vegetales-salteados-3_21.jpeg'
     },

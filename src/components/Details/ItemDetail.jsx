@@ -12,9 +12,10 @@ const ItemDetail = ({ object }) => {
     const classes = useStyles();
 
     return (
-        <Card className={classes.root} style={{ width: "100p%" }}>
+        <Card className={classes.root} >
+
             <CardMedia className={classes.media} image={object.image} title={object.name} />
-            <CardContent>
+            <CardContent >
                 <div className={classes.cardContent}>
                     <Typography variant="h5" gutterBottom>
                         {object.name}

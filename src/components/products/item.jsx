@@ -12,21 +12,21 @@ const Item = ({ item }) => {
 
     const classes = useStyles();
     return (
-        <Card className={classes.root} style={{ maxHeight: "450px", width: "100p%" }}>
+        <Card className={classes.root} style={{ maxHeight: "450px", height: "500px" }}>
             <CardMedia className={classes.media} image={item.image} title={item.name} />
             <CardContent>
                 <div className={classes.cardContent}>
-                    <Typography variant="h5" gutterBottom>
+                    <Typography variant="subtitle1" gutterBottom>
                         {item.name}
                     </Typography>
-                    <Typography variant="h5">
+                    <Typography variant="subtitle2" color="success">
                         ${item.price}
                     </Typography>
 
                 </div>
                 <Typography variant="body2" color="textSecondary">{item.description}</Typography>
             </CardContent>
-            <CardActions disableSpacing className={classes.cardActions}>
+            <CardActions disableSpacing className={classes.cardActions} sx={{ alignItems: 'flex-end' }}>
                 <Link to={`/item/${item.id}`}>
                     <Button variant="contained">Ver más</Button>
                 </Link>

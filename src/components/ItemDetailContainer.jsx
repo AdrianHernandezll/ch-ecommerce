@@ -38,8 +38,8 @@ const ItemDetailContainer = () => {
 
         <main className={classes.content}>
             <div className={classes.toolbar} />
-            <Grid container justifyContent="center" spacing={3}>
-                <Grid item key={object[0]?.id} xs={12} sm={6} md={4} lg={3}>
+            <Grid container justifyContent="center" >
+                <Grid item key={object[0]?.id} xs={12} sm={8} md={6} lg={4}  >
                     {loading ? <h2>Loading...</h2> : <ItemDetail object={object} />}
                 </Grid>
             </Grid>
