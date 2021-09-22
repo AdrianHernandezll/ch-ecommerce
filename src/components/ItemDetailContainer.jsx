@@ -11,7 +11,7 @@ import useStyles from './products/styles';
 
 const ItemDetailContainer = () => {
 
-    const [object, setObject] = useState({});
+    const [object, setObject] = useState([]);
     const [loading, setLoading] = useState(true)
 
     const { id } = useParams();
@@ -20,7 +20,7 @@ const ItemDetailContainer = () => {
         getPromise
             .then((response) => {
                 if (id) {
-                    const itemFilter = response.filter((item) => parseInt(item.id) === parseInt(id))
+                    const itemFilter = response.find((item) => parseInt(item.id) === parseInt(id))
                     setObject(itemFilter)
                     console.log(itemFilter)
                 } else {
@@ -33,14 +33,14 @@ const ItemDetailContainer = () => {
     }, [id])
 
     const classes = useStyles();
-
+    console.log(getPromise);
     return (
 
         <main className={classes.content}>
             <div className={classes.toolbar} />
             <Grid container justifyContent="center" spacing={3}>
-                <Grid item key={object[0].id} xs={12} sm={6} md={4} lg={3}>
-                    {loading ? <h2>Loading...</h2> : <ItemDetail object={object[0]} />}
+                <Grid item key={object[0]?.id} xs={12} sm={6} md={4} lg={3}>
+                    {loading ? <h2>Loading...</h2> : <ItemDetail object={object} />}
                 </Grid>
             </Grid>
         </main>
