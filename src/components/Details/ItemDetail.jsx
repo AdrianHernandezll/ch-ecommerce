@@ -45,19 +45,12 @@ const ItemDetail = ({ object }) => {
                         <Typography variant="body2">{object.description}</Typography>
                     </CardContent>
                     <Grid container >
-                        <Grid item md={7} sx={{ flexGrow: 1 }} >
+                        <Grid item md={10} sx={{ flexGrow: 1 }} >
                             <CardActions disableSpacing className={classes.cardActions}>
                                 <ItemCount stock={5} initial={1} onAdd={onAdd} />
                             </CardActions>
                         </Grid>
-                        <Grid item md={4} >
-                            <Grid item md={4} >
-                                <IconButton className={classes.cardActions}>
-                                    <AddShoppingCart />
-                                </IconButton>
 
-                            </Grid>
-                        </Grid>
                     </Grid>
                 </Card>
             </Grid>

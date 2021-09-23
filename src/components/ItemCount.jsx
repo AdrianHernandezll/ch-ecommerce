@@ -33,18 +33,18 @@ const ItemCount = ({ stock, initial, onAdd }) => {
             {changeBoton ?
                 <>
                     <p>Stock:{count}</p>
-                    <button disabled={count === stock} onClick={addItem}>+1</button>
-                    <button onClick={agregarCarrito} disabled={count === 0}>Agregar al Carro</button>
-                    <button disabled={count <= 0} onClick={onSubtract}>-1</button>
+                    <button variant="contained" disabled={count === stock} onClick={addItem}>+1</button>
+                    <button variant="contained" onClick={agregarCarrito} disabled={count === 0}>Agregar al Carro</button>
+                    <button variant="contained" disabled={count <= 0} onClick={onSubtract}>-1</button>
                 </>
 
                 :
                 <>
                     <Link to={'/'}>
-                        <Button >Continuar Compra</Button>
+                        <Button variant="contained" >Continuar Compra</Button>
                     </Link>
                     <Link to={'/cart'}>
-                        <Button >Finalizar Compra</Button>
+                        <Button variant="contained" >Finalizar Compra</Button>
                     </Link>
                 </>
 
