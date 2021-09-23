@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid } from '@material-ui/core';
+import { Box, Grid } from '@material-ui/core';
 import ItemDetail from './Details/ItemDetail';
 
 import { useParams } from 'react-router-dom';
@@ -33,15 +33,13 @@ const ItemDetailContainer = () => {
     }, [id])
 
     const classes = useStyles();
-    console.log(getPromise);
     return (
         <main className={classes.content}>
             <div className={classes.toolbar} />
-            <Grid container justifyContent="center" >
-                <Grid item key={object[0]?.id} xs={12} sm={8} md={6} lg={4}  >
-                    {loading ? <h2>Loading...</h2> : <ItemDetail object={object} />}
-                </Grid>
+            <Grid container key={object[0]?.id}  >
+                {loading ? <h2>Loading...</h2> : <ItemDetail object={object} />}
             </Grid>
+
         </main>
     )
 }
