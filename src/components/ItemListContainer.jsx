@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
-// import ItemCount from './ItemCount';
+import ItemCount from './ItemCount';
 import ItemList from './products/product/ItemList';
 
 
@@ -18,8 +18,7 @@ const ItemListContainer = () => {
     }
     return (
         <>
-
-            {/* <ItemCount onAdd={onAdd} stock={8} initial={1} /> */}
+            <ItemCount onAdd={onAdd} stock={10} initial={1} />
             <ItemList idCategory={idCategory} />
         </>
     )

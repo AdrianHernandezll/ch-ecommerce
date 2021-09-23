@@ -1,6 +1,7 @@
 import React from 'react';
-import { Card, CardMedia, CardContent, CardActions, Typography, IconButton, Button } from '@material-ui/core'
+import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
+import ItemCount from '../ItemCount';
 
 
 import useStyles from '../products/product/style'
@@ -8,7 +9,7 @@ import useStyles from '../products/product/style'
 
 
 const ItemDetail = ({ object }) => {
-    console.log(object);
+
     const classes = useStyles();
 
     return (
@@ -28,7 +29,7 @@ const ItemDetail = ({ object }) => {
                 <Typography variant="body2" color="textSecondary">{object.description}</Typography>
             </CardContent>
             <CardActions disableSpacing className={classes.cardActions}>
-
+                <ItemCount />
                 <IconButton aria-label="Add to Cart">
                     <AddShoppingCart />
                 </IconButton>

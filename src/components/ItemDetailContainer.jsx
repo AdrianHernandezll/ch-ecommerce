@@ -35,7 +35,6 @@ const ItemDetailContainer = () => {
     const classes = useStyles();
     console.log(getPromise);
     return (
-
         <main className={classes.content}>
             <div className={classes.toolbar} />
             <Grid container justifyContent="center" >

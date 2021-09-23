@@ -20,7 +20,6 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 
     const agregarCarrito = () => {
         if (count === 0) {
-            agregarCarrito.disabled = true;
             alert('No hay artiulos agregados');
         } else {
             onAdd(count)
@@ -30,7 +29,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     return (
         <>
 
-            <div className=" text-center">
+            <div className=" ">
                 <p>Stock:{count}</p>
                 <button className="btn btn-primary" disabled={count === stock} onClick={addItem}>+1</button>
                 <button className="btn btn-primary mx-auto" onClick={agregarCarrito}>Agregar al Carro</button>
