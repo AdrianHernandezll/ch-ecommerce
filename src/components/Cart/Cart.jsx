@@ -12,17 +12,14 @@ const Cart = () => {
 
     const FilledCard = () => (
         <>
-            <Grid container spacing={3}>
 
-
-            </Grid>
         </>
     );
 
     return (
         <Container>
-            <div className={classes.toolbar} />
-            <Typography className={classes.title} variant="h3">My Shoping</Typography>
+            {/* <div className={classes.toolbar} /> */}
+            <Typography variant="h3">Hola soy Cart</Typography>
             {isEmpty ? <EmpyCard /> : <FilledCard />}
 
         </Container>

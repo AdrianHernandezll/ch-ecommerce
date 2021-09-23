@@ -30,7 +30,10 @@ const Navbar = () => {
                     </Typography>
 
                     <div className={classes.grow} />
-                    <CardWidget />
+                    <NavLink exact to="/Cart">
+                        <CardWidget />
+                    </NavLink>
+
 
                 </Toolbar>
             </AppBar>
