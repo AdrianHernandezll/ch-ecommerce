@@ -22,19 +22,13 @@ const Navbar = () => {
                             TodoComida
                         </Typography>
                     </NavLink>
-                    <Typography variant="h6" component="div" spacing="3" sx={{ flexGrow: 3 }} >
+                    <Typography variant="a" component="div" justifyContent='space-between' >
                         <NavLink exact to="/category/plato">Plato</NavLink>
+                        <NavLink exact to="/category/picada">Picada</NavLink>
+                        <NavLink exact to="/category/bebida">Bebida</NavLink>
+                        <NavLink exact to="/category/pizza">Pizzas</NavLink>
                     </Typography>
-                    <NavLink exact to="/category/picada">Picada</NavLink>
-                    <Typography>
-                    </Typography>
-                    <NavLink exact to="/category/bebida">Bebida</NavLink>
-                    <Typography>
-                    </Typography>
-                    <NavLink exact to="/category/pizza">Pizzas</NavLink>
-                    <Typography>
 
-                    </Typography>
                     <div className={classes.grow} />
                     <CardWidget />
 
