@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton, Grid } from '@material-ui/core';
 import ItemCount from '../ItemCount';
-import { AddShoppingCart } from '@material-ui/icons';
 
 
 import useStyles from '../products/product/style'
+import { useCartContext } from '../../Context/CartContext';
 
 
 
@@ -12,11 +12,14 @@ import useStyles from '../products/product/style'
 const ItemDetail = ({ object }) => {
     const [countSelect, setCountSelect] = useState(0);
 
+    const { addToCart } = useCartContext();
+
+    console.log(addToCart)
 
     const onAdd = (cant) => {
-        setCountSelect(cant)
-        console.log(countSelect);
-        //console.log(count);
+
+        addToCart({ object: object, cantidad: cant })
+
     }
 
     const classes = useStyles();

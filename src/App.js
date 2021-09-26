@@ -5,28 +5,31 @@ import { Navbar } from './components';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Cart from './components/Cart/Cart';
+import CartContextProvider from './Context/CartContext';
 
 
 function App() {
 
 
   return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <Switch>
-          <Route exact path="/" >
-            <ItemListContainer />
-          </Route>
-          <Route exact path="/category/:idCategory" component={ItemListContainer} />
-          <Route exact path='/item/:id' component={ItemDetailContainer} />
+    <CartContextProvider>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Switch>
+            <Route exact path="/" >
+              <ItemListContainer />
+            </Route>
+            <Route exact path="/category/:idCategory" component={ItemListContainer} />
+            <Route exact path='/item/:id' component={ItemDetailContainer} />
 
-          <Route exact path="/Cart" component={Cart} />
-        </Switch>
+            <Route exact path="/Cart" component={Cart} />
+          </Switch>
 
 
-      </div>
-    </Router>
+        </div>
+      </Router>
+    </CartContextProvider>
   );
 }
 
