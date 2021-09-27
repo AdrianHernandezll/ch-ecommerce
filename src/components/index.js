@@ -1,2 +1,2 @@
-export { default as Navbar } from './Navbar/Navbar';
+export { default as NavBar } from './Navbar/NavBar';
 export { default as Item } from './products/Item';

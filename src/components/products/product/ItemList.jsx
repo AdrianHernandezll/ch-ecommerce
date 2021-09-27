@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Grid } from '@material-ui/core';
+import Container from 'react-bootstrap/Container';
+import Placeholder from 'react-bootstrap/Placeholder';
+import Card from 'react-bootstrap/Card'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col'
+
 import Item from '../Item';
 import { getPromise } from '../../../util/mock';
 
-import useStyles from '../styles';
+
 
 
 const ItemList = ({ idCategory }) => {
@@ -28,22 +33,45 @@ const ItemList = ({ idCategory }) => {
     }, [idCategory])
 
 
-    const classes = useStyles();
+
     return (
 
-        <main className={classes.content}>
-            <div className={classes.toolbar} />
-            <Grid container justifyContent="center" spacing={3}>
-                {loading ? <h2>Loading...</h2> :
+        <Container>
+            <Row xs={1} md={3} className="g-4">
+                {loading ? <Card style={{ width: '18rem' }}>
+                    <Card.Img variant="top" src="holder.js/100px180" />
+                    <Card.Body>
+                        <Placeholder as={Card.Title} animation="glow">
+                            <Placeholder xs={6} />
+                        </Placeholder>
+                        <Placeholder as={Card.Text} animation="glow">
+                            <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
+                            <Placeholder xs={6} /> <Placeholder xs={8} />
+                        </Placeholder>
+                        <Placeholder.Button variant="primary" xs={6} />
+                    </Card.Body>
+                </Card> :
                     items.map(item => (
-                        <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
+                        <Col xs={2} lg={4} sm={12} md={6} key={item.id}>
                             <Item item={item} />
-                        </Grid>
-                    ))
-                }
+                        </Col>
+                    ))}
+            </Row>
+        </Container>
 
-            </Grid>
-        </main>
+        // <main className={classes.content}>
+        //     <div className={classes.toolbar} />
+        //     <Grid container justifyContent="center" spacing={3}>
+        //         {loading ? <h2>Loading...</h2> :
+        //             items.map(item => (
+        //                 <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
+        //                     <Item item={item} />
+        //                 </Grid>
+        //             ))
+        //         }
+
+        //     </Grid>
+        // </main>
     )
 
 }

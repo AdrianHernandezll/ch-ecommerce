@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@material-ui/core';
+import Button from 'react-bootstrap/Button'
+
 
 
 
@@ -33,18 +34,18 @@ const ItemCount = ({ stock, initial, onAdd }) => {
             {changeBoton ?
                 <>
                     <p>Stock:{count}</p>
-                    <button variant="contained" disabled={count === stock} onClick={addItem}>+1</button>
-                    <button variant="contained" onClick={agregarCarrito} disabled={count === 0}>Agregar al Carro</button>
-                    <button variant="contained" disabled={count <= 0} onClick={onSubtract}>-1</button>
+                    <button disabled={count === stock} onClick={addItem}>+1</button>
+                    <button onClick={agregarCarrito} disabled={count === 0}>Agregar al Carro</button>
+                    <button disabled={count <= 0} onClick={onSubtract}>-1</button>
                 </>
 
                 :
                 <>
                     <Link to={'/'}>
-                        <Button variant="contained" >Continuar Compra</Button>
+                        <Button  >Continuar Compra</Button>
                     </Link>
                     <Link to={'/cart'}>
-                        <Button variant="contained" >Finalizar Compra</Button>
+                        <Button  >Finalizar Compra</Button>
                     </Link>
                 </>
 

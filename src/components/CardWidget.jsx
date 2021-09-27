@@ -1,18 +1,23 @@
 import React from 'react';
-import { IconButton, Badge } from "@material-ui/core";
-import { ShoppingCart } from "@material-ui/icons";
+import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button'
 
-import useStyles from "./Navbar/styles";
+
+
 
 const CardWidget = () => {
-    const classes = useStyles();
     return (
-        <div className={classes.button}>
-            <IconButton aria-label="Show cart items" color="inherit">
+        <div >
+            {/* <IconButton aria-label="Show cart items" color="inherit">
                 <Badge badgeContent={2} color="secondary">
                     <ShoppingCart />
                 </Badge>
-            </IconButton>
+            </IconButton> */}
+            <Button variant="primary">
+                <i className="fas fa-shopping-cart"></i> <Badge bg="secondary">9</Badge>
+                <span className="visually-hidden">unread messages</span>
+            </Button>
+
         </div>
     )
 }

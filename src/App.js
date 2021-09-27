@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { commerce } from './lib/commerce'
-import { Navbar } from './components';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import { NavBar } from './components';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Cart from './components/Cart/Cart';
@@ -15,7 +16,7 @@ function App() {
     <CartContextProvider>
       <Router>
         <div className="App">
-          <Navbar />
+          <NavBar />
           <Switch>
             <Route exact path="/" >
               <ItemListContainer />

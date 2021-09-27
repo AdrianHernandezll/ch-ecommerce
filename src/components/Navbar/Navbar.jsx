@@ -1,20 +1,24 @@
 import React from 'react';
-import { AppBar, Toolbar, MenuItem, Menu, Typography } from '@material-ui/core';
+import Navbar from 'react-bootstrap/Navbar'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+import Container from 'react-bootstrap/Container'
+import Nav from 'react-bootstrap/Nav'
+
 
 import logo from '../../asset/logo.png'
-import useStyles from './styles'
+
 
 import CardWidget from '../CardWidget';
-import { NavLink } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 
 
 
-const Navbar = () => {
+const NavBar = () => {
 
-    const classes = useStyles();
+
     return (
         <>
-            <AppBar position="fixed" className={classes.appBar} color="inherit">
+            {/* <AppBar position="fixed" className={classes.appBar} color="inherit">
                 <Toolbar>
                     <NavLink exact to="/">
                         <Typography variant="h6" className={classes.title} color="inherit">
@@ -36,9 +40,48 @@ const Navbar = () => {
 
 
                 </Toolbar>
-            </AppBar>
+            </AppBar> */}
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+                <Container>
+                    <LinkContainer exact to="/">
+                        <img
+                            src={logo}
+                            width="30"
+                            height="30"
+                            className="d-inline-block align-top"
+                            alt="React Bootstrap logo"
+                        />
+                    </LinkContainer>
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar.Collapse id="responsive-navbar-nav">
+                        <Nav className="me-auto">
+                            <NavDropdown title="Productos" id="collasible-nav-dropdown">
+                                <LinkContainer exact to="/category/plato">
+                                    <NavDropdown.Item href="#action/3.1">Plato</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer exact to="/category/picada">
+                                    <NavDropdown.Item href="#action/3.2">Picada</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer exact to="/category/bebida">
+                                    <NavDropdown.Item href="#action/3.3">Bebida</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer exact to="/category/pizza">
+                                    <NavDropdown.Item href="#action/3.4">Pizzas</NavDropdown.Item>
+                                </LinkContainer>
+                            </NavDropdown>
+                        </Nav>
+                        <Nav>
+                            <LinkContainer exact to="/Cart">
+                                <Nav.Link href="#deets">
+                                    <CardWidget />
+                                </Nav.Link>
+                            </LinkContainer>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
         </>
     )
 }
 
-export default Navbar
+export default NavBar

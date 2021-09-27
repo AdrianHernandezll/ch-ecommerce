@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Grid } from '@material-ui/core';
+import Container from 'react-bootstrap/Container'
 import ItemDetail from './Details/ItemDetail';
-
+import Spinner from 'react-bootstrap/Spinner'
 import { useParams } from 'react-router-dom';
 import { getPromise } from '../util/mock'
-import useStyles from './products/styles';
+import { Row } from 'react-bootstrap';
+
 
 
 
@@ -34,15 +35,20 @@ const ItemDetailContainer = () => {
 
 
 
-    const classes = useStyles();
-    return (
-        <main className={classes.content} >
-            <div className={classes.toolbar} />
-            <Grid container key={object[0]?.id}  >
-                {loading ? <h2>Loading...</h2> : <ItemDetail object={object} />}
-            </Grid>
 
-        </main>
+    return (
+        <Container className="container-fluid mx-auto px-1 px-md-2 px-lg-4 py-5">
+            <Row key={object[0]?.id} className="d-flex ">
+                {loading ? <Spinner animation="border" className="justify-content-md-center" /> : <ItemDetail object={object} />}
+            </Row>
+        </Container>
+        // <main className={classes.content} >
+        //     <div className={classes.toolbar} />
+        //     <Grid container key={object[0]?.id}  >
+        //         {loading ? <h2>Loading...</h2> : <ItemDetail object={object} />}
+        //     </Grid>
+
+        // </main>
     )
 }
 
