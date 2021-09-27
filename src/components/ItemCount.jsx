@@ -32,12 +32,16 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     return (
         <>
             {changeBoton ?
-                <>
-                    <p>Stock:{count}</p>
-                    <button className="btn btn-lg btn-outline-primary text-uppercase" disabled={count === stock} onClick={addItem}>+1</button>
-                    <button className="btn btn-lg btn-outline-primary text-uppercase mx-auto px-4" onClick={agregarCarrito} disabled={count === 0}><i className="fas fa-shopping-cart"></i>Agregar al Carro</button>
-                    <button className="btn btn-lg btn-outline-primary text-uppercase" disabled={count <= 0} onClick={onSubtract}>-1</button>
-                </>
+                <div className="justify-content-space-between">
+                    <div className="text-center">
+                        <p>Stock:{count}</p>
+                    </div>
+                    <div className="d-flex text-center mx-auto">
+                        <button className="btn btn-lg btn-outline-primary text-uppercase" disabled={count === stock} onClick={addItem}>+1</button>
+                        <button className="btn btn-lg btn-outline-primary text-uppercase mx-2 " onClick={agregarCarrito} disabled={count === 0}><i className="fas fa-shopping-cart"></i>Agregar al Carro</button>
+                        <button className="btn btn-lg btn-outline-primary text-uppercase" disabled={count <= 0} onClick={onSubtract}>-1</button>
+                    </div>
+                </div>
 
                 :
                 <div className="d-flex justify-content-around">

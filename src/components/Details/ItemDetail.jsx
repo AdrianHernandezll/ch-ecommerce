@@ -1,6 +1,4 @@
-import { useState, useContext } from 'react';
 import Card from 'react-bootstrap/Card';
-import itemDetail from './itemDetail.css'
 import ItemCount from '../ItemCount';
 import { useCartContext } from '../../Context/CartContext';
 import { Col, Row } from 'react-bootstrap';
@@ -9,7 +7,7 @@ import { Col, Row } from 'react-bootstrap';
 
 
 const ItemDetail = ({ object }) => {
-    const [countSelect, setCountSelect] = useState(0);
+    // const [countSelect, setCountSelect] = useState(0);
 
     const { addToCart } = useCartContext();
 
@@ -31,7 +29,7 @@ const ItemDetail = ({ object }) => {
                     <Col sm={6} className=" border-right mx-auto mt-2 px-1 px-md-2 px-lg-4 py-5">
                         <article className="gallery-wrap">
                             <div className="img-big-wrap">
-                                <img src={object.image} style={{ width: '100%' }} />
+                                <img src={object.image} style={{ width: '100%' }} alt="logo" />
                             </div>
                         </article>
                     </Col>
@@ -57,7 +55,7 @@ const ItemDetail = ({ object }) => {
                                 <dt>Delivery</dt>
                                 <p className="text-success">A todo el pais</p>
                             </div>
-                            <div className="mx-5 text-center">
+                            <div className="text-center mx-auto d-flex">
                                 <ItemCount stock={5} initial={1} onAdd={onAdd} />
                             </div>
                         </article>
