@@ -44,13 +44,16 @@ const NavBar = () => {
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>
                     <LinkContainer exact to="/">
-                        <img
-                            src={logo}
-                            width="30"
-                            height="30"
-                            className="d-inline-block align-top"
-                            alt="React Bootstrap logo"
-                        />
+                        <Navbar.Brand>
+                            <img
+                                src={logo}
+                                width="30"
+                                height="30"
+                                className="d-inline-block align-top"
+                                alt="logo"
+                            />
+                            TodoComida
+                        </Navbar.Brand>
                     </LinkContainer>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">

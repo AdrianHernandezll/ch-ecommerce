@@ -11,8 +11,6 @@ const ItemDetail = ({ object }) => {
 
     const { addToCart } = useCartContext();
 
-    console.log(addToCart)
-
     const onAdd = (cant) => {
 
         addToCart({ object: object, cantidad: cant })

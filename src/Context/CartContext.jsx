@@ -17,8 +17,6 @@ export default function CartContextProvider({ children }) {
         cartList([])
     }
 
-    console.log(cartList);
-
     return (
 
         <CartContext.Provider value={{
