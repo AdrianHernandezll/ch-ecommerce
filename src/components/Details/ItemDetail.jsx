@@ -28,7 +28,7 @@ const ItemDetail = ({ object }) => {
         <>
             <Card>
                 <Row>
-                    <Col sm={6} className=" border-right mx-auto px-1 px-md-2 px-lg-4 py-5">
+                    <Col sm={6} className=" border-right mx-auto mt-2 px-1 px-md-2 px-lg-4 py-5">
                         <article className="gallery-wrap">
                             <div className="img-big-wrap">
                                 <img src={object.image} style={{ width: '100%' }} />
