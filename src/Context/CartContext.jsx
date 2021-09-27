@@ -10,9 +10,7 @@ export default function CartContextProvider({ children }) {
     const [cartList, setCartList] = useState([]);
 
     function addToCart(object) {
-        if (object.indexOf(cartList) !== object.id) {
-            setCartList([...cartList, object]);
-        }
+        setCartList([...cartList, object]);
     }
 
     function deleteList() {

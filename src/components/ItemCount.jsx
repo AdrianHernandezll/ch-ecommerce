@@ -34,20 +34,20 @@ const ItemCount = ({ stock, initial, onAdd }) => {
             {changeBoton ?
                 <>
                     <p>Stock:{count}</p>
-                    <button disabled={count === stock} onClick={addItem}>+1</button>
-                    <button onClick={agregarCarrito} disabled={count === 0}>Agregar al Carro</button>
-                    <button disabled={count <= 0} onClick={onSubtract}>-1</button>
+                    <button className="btn btn-lg btn-outline-primary text-uppercase" disabled={count === stock} onClick={addItem}>+1</button>
+                    <button className="btn btn-lg btn-outline-primary text-uppercase mx-auto px-4" onClick={agregarCarrito} disabled={count === 0}><i className="fas fa-shopping-cart"></i>Agregar al Carro</button>
+                    <button className="btn btn-lg btn-outline-primary text-uppercase" disabled={count <= 0} onClick={onSubtract}>-1</button>
                 </>
 
                 :
-                <>
+                <div className="d-flex justify-content-around">
                     <Link to={'/'}>
-                        <Button  >Continuar Compra</Button>
+                        <Button className="btn btn-primary px-3">Continuar Compra</Button>
                     </Link>
                     <Link to={'/cart'}>
-                        <Button  >Finalizar Compra</Button>
+                        <Button className="btn btn-success">Finalizar Compra</Button>
                     </Link>
-                </>
+                </div>
 
             }
         </>

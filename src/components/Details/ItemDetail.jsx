@@ -53,27 +53,13 @@ const ItemDetail = ({ object }) => {
                                 <dt>Categoria</dt>
                                 <dd>{object.category}</dd>
                             </div>
-                            <div className="param param-feature">
+                            <div className="param param-feature ">
                                 <dt>Delivery</dt>
-                                <p variant="success">A todo el pais</p>
+                                <p className="text-success">A todo el pais</p>
                             </div>
-
-                            <hr />
-                            <div class="col-sm-5">
-                                <dl class="param param-inline">
-                                    <dt>Cantidad: </dt>
-                                    <dd>
-                                        <select class="form-control form-control-sm" style={{ width: "70px" }}>
-                                            <option> 1 </option>
-                                            <option> 2 </option>
-                                            <option> 3 </option>
-                                        </select>
-                                    </dd>
-                                </dl>
+                            <div className="mx-5 text-center">
+                                <ItemCount stock={5} initial={1} onAdd={onAdd} />
                             </div>
-                            <hr />
-
-                            <a href="/" className="btn btn-lg btn-outline-primary text-uppercase"> <i className="fas fa-shopping-cart"></i> Add to cart </a>
                         </article>
                     </Col>
 
