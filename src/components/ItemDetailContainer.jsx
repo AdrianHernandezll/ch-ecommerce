@@ -23,7 +23,6 @@ const ItemDetailContainer = () => {
                 if (id) {
                     const itemFilter = response.find((item) => parseInt(item.id) === parseInt(id))
                     setObject(itemFilter)
-                    console.log(itemFilter)
                 } else {
                     setObject(response)
                 }
@@ -42,14 +41,8 @@ const ItemDetailContainer = () => {
                 {loading ? <Spinner animation="border" className="justify-content-md-center" /> : <ItemDetail object={object} />}
             </Row>
         </Container>
-        // <main className={classes.content} >
-        //     <div className={classes.toolbar} />
-        //     <Grid container key={object[0]?.id}  >
-        //         {loading ? <h2>Loading...</h2> : <ItemDetail object={object} />}
-        //     </Grid>
-
-        // </main>
     )
 }
 
 export default ItemDetailContainer
+
