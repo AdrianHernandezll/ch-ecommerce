@@ -30,7 +30,7 @@ const ItemDetail = ({ object }) => {
                     </Col>
                     <Col sm={6} >
                         <article className="card-body  mx-auto px-1 px-md-2 px-lg-4 py-5">
-                            <h3 className="title mb-3">{object.name}</h3>
+                            <h3 className="title mb-3">{object.title}</h3>
 
                             <p className="price-detail-wrap">
                                 <span className="price h3 text-warning">

@@ -17,7 +17,7 @@ const Item = ({ item }) => {
             <Card style={{ width: 'auto', marginTop: "1rem", height: '600px' }}>
                 <Card.Img variant="top" src={item.image} />
                 <Card.Body>
-                    <Card.Title>{item.name}</Card.Title>
+                    <Card.Title>{item.title}</Card.Title>
                     <Card.Text>
                         {item.description}
                     </Card.Text>

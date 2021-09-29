@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container'
 import ItemDetail from './Details/ItemDetail';
 import Spinner from 'react-bootstrap/Spinner'
 import { useParams } from 'react-router-dom';
-import { getPromise } from '../util/mock'
+import { getFirestore } from '../services/getFirebase'
 import { Row } from 'react-bootstrap';
 
 
@@ -19,6 +19,14 @@ const ItemDetailContainer = () => {
 
     useEffect(() => {
 
+        const dbQuery = getFirestore();
+        dbQuery.collection('items').doc(id).get()
+            .then((object) => {
+                setObject({ id: object.id, ...object.data() })
+
+            })
+            .catch(err => console.log(err))
+            .finally(() => setLoading(false));
 
     }, [id])
 
@@ -27,7 +35,7 @@ const ItemDetailContainer = () => {
 
     return (
         <Container className="container-fluid mx-auto px-1 px-md-2 px-lg-4 py-5">
-            <Row key={object[0]?.id} className="d-flex ">
+            <Row key={object?.id} className="d-flex ">
                 {loading ? <Spinner animation="border" className="justify-content-md-center" /> : <ItemDetail object={object} />}
             </Row>
         </Container>
