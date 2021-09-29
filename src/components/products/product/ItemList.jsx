@@ -6,7 +6,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 
 import Item from '../Item';
-import { getPromise } from '../../../util/mock';
+import { getFirestore } from '../../../services/getFirebase';
+
 
 
 
@@ -18,18 +19,23 @@ const ItemList = ({ idCategory }) => {
 
 
     useEffect(() => {
-        getPromise
-            .then((response) => {
-                if (idCategory) {
-                    const filtraCategoria = response.filter((producto) => producto.category === idCategory)
-                    setItems(filtraCategoria)
-                } else {
-                    setItems(response)
-                }
-
-            })
-            .catch(err => console.log(err))
-            .finally(() => setLoading(false));
+        if (idCategory) {
+            const dbQuery = getFirestore();
+            dbQuery.collection('items').where('categoryId', "==", idCategory).get()
+                .then(res => {
+                    setItems(res.docs.map(items => ({ id: items.id, ...items.data() })))
+                })
+                .catch(err => console.log(err))
+                .finally(() => setLoading(false));
+        } else {
+            const dbQuery = getFirestore();
+            dbQuery.collection('items').get()
+                .then(res => {
+                    setItems(res.docs.map(items => ({ id: items.id, ...items.data() })))
+                })
+                .catch(err => console.log(err))
+                .finally(() => setLoading(false));
+        }
     }, [idCategory])
 
 

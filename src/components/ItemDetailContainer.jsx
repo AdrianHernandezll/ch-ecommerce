@@ -18,18 +18,8 @@ const ItemDetailContainer = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        getPromise
-            .then((response) => {
-                if (id) {
-                    const itemFilter = response.find((item) => parseInt(item.id) === parseInt(id))
-                    setObject(itemFilter)
-                } else {
-                    setObject(response)
-                }
 
-            })
-            .catch(err => console.log(err))
-            .finally(() => setLoading(false));
+
     }, [id])
 
 

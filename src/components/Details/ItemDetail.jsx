@@ -16,7 +16,6 @@ const ItemDetail = ({ object }) => {
     }
 
 
-
     return (
 
         <>

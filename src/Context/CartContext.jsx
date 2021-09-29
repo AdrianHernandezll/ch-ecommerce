@@ -9,12 +9,6 @@ export default function CartContextProvider({ children }) {
 
     const [cartList, setCartList] = useState([]);
 
-    // function addToCart(object) {
-    //     const isUniqueCart = cartList.every(cart => cart !== object)
-    //     if (isUniqueCart) {
-    //         setCartList([...cartList, object])
-    //     }
-    // }
     function addToCart(object, quantity) {
         const index = cartList.findIndex(i => i.object.id === object.id)
         if (index > -1) {
@@ -27,16 +21,34 @@ export default function CartContextProvider({ children }) {
         }
     }
 
-    function deleteList() {
+    const removeItem = (object) => {
+
+        const deleteProduct = cartList.filter((obj) => obj.object.id !== object.object.id);
+
+        setCartList([...deleteProduct]);
+    }
+
+    const iconCartWd = () => {
+        return cartList.reduce((acc, object) => acc + object.quantity, 0)
+    }
+
+    const totalPrice = () => {
+        return cartList.reduce((acc, object) => (acc + (object.quantity * object.object.price)), 0)
+    }
+
+    function clear() {
         cartList([])
     }
-    console.log(cartList);
+
     return (
 
         <CartContext.Provider value={{
             cartList,
             addToCart,
-            deleteList
+            removeItem,
+            iconCartWd,
+            totalPrice,
+            clear
         }}>
             {children}
         </CartContext.Provider>
