@@ -23,7 +23,7 @@ export default function CartContextProvider({ children }) {
 
     const removeItem = (object) => {
 
-        const deleteProduct = cartList.filter((obj) => obj.object.id !== object.object.id);
+        const deleteProduct = cartList.filter((prod) => prod.object.id !== object.object.id);
 
         setCartList([...deleteProduct]);
     }
