@@ -18,29 +18,6 @@ const NavBar = () => {
 
     return (
         <>
-            {/* <AppBar position="fixed" className={classes.appBar} color="inherit">
-                <Toolbar>
-                    <NavLink exact to="/">
-                        <Typography variant="h6" className={classes.title} color="inherit">
-                            <img src={logo} alt="Commerce.js" height="25px" className={classes.image} />
-                            TodoComida
-                        </Typography>
-                    </NavLink>
-                    <Typography variant="a" component="div" justifyContent='space-between' >
-                        <NavLink exact to="/category/plato">Plato</NavLink>
-                        <NavLink exact to="/category/picada">Picada</NavLink>
-                        <NavLink exact to="/category/bebida">Bebida</NavLink>
-                        <NavLink exact to="/category/pizza">Pizzas</NavLink>
-                    </Typography>
-
-                    <div className={classes.grow} />
-                    <NavLink exact to="/Cart">
-                        <CardWidget />
-                    </NavLink>
-
-
-                </Toolbar>
-            </AppBar> */}
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>
                     <LinkContainer exact to="/">

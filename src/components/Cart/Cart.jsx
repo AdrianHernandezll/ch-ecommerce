@@ -15,7 +15,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 const Cart = () => {
 
-    const { cartList, removeItem, totalPrice } = useCartContext();
+    const { cartList, removeItem, totalPrice, updateItemQty } = useCartContext();
     const isInCart = !cartList.length;
 
     const EmptyCard = () => (
@@ -55,7 +55,7 @@ const Cart = () => {
                                             </figure>
                                         </td>
                                         <td className="d-flex justify-content-between">
-                                            <Button className="mt-5" onClick={object.quantity + 1}>+</Button>
+                                            <Button className="mt-5" onClick={() => updateItemQty(object + 1)}>+</Button>
                                             <p className="mt-5 mx-auto">{object.quantity}</p>
                                             <Button className="mt-5 ">-</Button>
                                         </td>

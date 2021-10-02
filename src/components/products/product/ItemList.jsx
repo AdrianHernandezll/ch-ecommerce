@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 
-import Item from '../Item';
+import Item from '../item';
 import { getFirestore } from '../../../services/getFirebase';
 
 

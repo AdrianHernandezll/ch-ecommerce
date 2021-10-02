@@ -20,6 +20,9 @@ export default function CartContextProvider({ children }) {
             setCartList([...cartList, { object, quantity }])
         }
     }
+    const updateItemQty = () => {
+        return cartList.reduce((acc, object) => (acc + (object.quantity + object.object.id)), 0)
+    }
 
     const removeItem = (object) => {
 
@@ -47,6 +50,7 @@ export default function CartContextProvider({ children }) {
             addToCart,
             removeItem,
             iconCartWd,
+            updateItemQty,
             totalPrice,
             clear
         }}>
