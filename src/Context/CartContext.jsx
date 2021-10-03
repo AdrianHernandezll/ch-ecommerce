@@ -20,20 +20,31 @@ export default function CartContextProvider({ children }) {
             setCartList([...cartList, { object, quantity }])
         }
     }
-    const updateItemQty = () => {
-        return cartList.reduce((acc, object) => (acc + (object.quantity + object.object.id)), 0)
-    }
 
     const removeItem = (object) => {
 
         const deleteProduct = cartList.filter((prod) => prod.object.id !== object.object.id);
 
         setCartList([...deleteProduct]);
+
     }
 
+    const addOneItem = (id) => {
+        const object = cartList[id];
+        const count = object.quantity + 1;
+        object.quantity = count <= object.object.stock ? count : object.quantity;
+        setCartList([...cartList])
+    }
+    const removeOneItem = (id) => {
+        const object = cartList[id];
+        const count = object.quantity - 1;
+        object.quantity = count >= 1 ? count : object.quantity;
+        setCartList([...cartList])
+    }
     const iconCartWd = () => {
         return cartList.reduce((acc, object) => acc + object.quantity, 0)
     }
+
 
     const totalPrice = () => {
         return cartList.reduce((acc, object) => (acc + (object.quantity * object.object.price)), 0)
@@ -48,9 +59,10 @@ export default function CartContextProvider({ children }) {
         <CartContext.Provider value={{
             cartList,
             addToCart,
+            addOneItem,
             removeItem,
+            removeOneItem,
             iconCartWd,
-            updateItemQty,
             totalPrice,
             clear
         }}>
