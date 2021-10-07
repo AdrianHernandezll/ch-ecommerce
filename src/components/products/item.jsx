@@ -18,7 +18,7 @@ const Item = ({ item }) => {
                 <Card.Img variant="top" src={item.image} />
                 <Card.Body>
                     <Card.Title className="text-center">{item.title}</Card.Title>
-                    <Card.Footer className="text-center  my-auto  " style={{ width: '100%' }}>
+                    <Card.Footer className="text-center" style={{ width: '100%' }}>
                         <Link to={`/item/${item.id}`}>
                             <Button className="text-center d-flex align-self-end mx-auto" variant="primary">Ver Detalle</Button>
                         </Link>
