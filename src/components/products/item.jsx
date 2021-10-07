@@ -14,47 +14,20 @@ const Item = ({ item }) => {
 
 
         <>
-            <Card style={{ width: 'auto', marginTop: "1rem", height: '600px' }}>
+            <Card style={{ width: '20rem' }}>
                 <Card.Img variant="top" src={item.image} />
                 <Card.Body>
-                    <Card.Title>{item.title}</Card.Title>
-                    <Card.Text>
-                        {item.description}
-                    </Card.Text>
-                    <Link to={`/item/${item.id}`}>
-                        <Button variant="primary">Ver mas</Button>
-                    </Link>
-                    <Card.Footer>
-                        <small className="text-muted">Last updated 3 mins ago</small>
+                    <Card.Title className="text-center">{item.title}</Card.Title>
+                    <Card.Footer className="text-center  my-auto  " style={{ width: '100%' }}>
+                        <Link to={`/item/${item.id}`}>
+                            <Button className="text-center d-flex align-self-end mx-auto" variant="primary">Ver Detalle</Button>
+                        </Link>
                     </Card.Footer>
 
                 </Card.Body>
             </Card>
         </>
-        // <Card className={classes.root} style={{ maxHeight: "450px", height: "500px" }}>
-        //     <CardMedia className={classes.media} image={item.image} title={item.name} />
-        //     <CardContent>
-        //         <div className={classes.cardContent}>
-        //             <Typography variant="subtitle1" gutterBottom>
-        //                 {item.name}
-        //             </Typography>
-        //             <Typography variant="subtitle2" color="success">
-        //                 ${item.price}
-        //             </Typography>
 
-        //         </div>
-        //         <Typography variant="body2" color="textSecondary">{item.description}</Typography>
-        //     </CardContent>
-        //     <CardActions disableSpacing className={classes.cardActions} sx={{ alignItems: 'flex-end' }}>
-        //         <Link to={`/item/${item.id}`}>
-        //             <Button variant="contained">Ver más</Button>
-        //         </Link>
-        //         <IconButton aria-label="Add to Cart">
-        //             <AddShoppingCart />
-        //         </IconButton>
-        //     </CardActions>
-        //     {/* <Item item={item} /> */}
-        // </Card>
     )
 }
 
