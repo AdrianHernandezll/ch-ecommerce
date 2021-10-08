@@ -153,13 +153,13 @@ const Cart = () => {
 
             </Col>
 
-            <form onSubmit={handleOnSubmit}
-                onChange={handleOnChange}>
+            <form >
                 <input
                     type='text'
                     placeholder='ingrese el nombre'
                     name='name'
                     value={formData.name}
+                    onChange={handleOnChange}
 
                 />
                 <input
@@ -167,6 +167,7 @@ const Cart = () => {
                     placeholder='ingrese el nro de tel'
                     name='tel'
                     value={formData.tel}
+                    onChange={handleOnChange}
 
                 />
                 <input
@@ -174,12 +175,14 @@ const Cart = () => {
                     placeholder='ingrese el email'
                     name='email'
                     value={formData.email}
+                    onChange={handleOnChange}
 
                 />
                 <input
                     type='text'
                     placeholder='Confirme el mail '
                     name='email2'
+                    onChange={handleOnChange}
                 />
             </form>
 
@@ -208,7 +211,7 @@ const Cart = () => {
                                         <dd className="text-right text-success ml-3">${totalPrice() + 150}+Envio</dd>
                                     </dl>
 
-                                    <hr /> <a type="submit" className="btn btn-out btn-primary btn-square btn-main" data-abc="true"> Realizar Compra </a> <a href="/" className="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continuar Comprando</a>
+                                    <hr /> <a href="/" type="submit" className="btn btn-out btn-primary btn-square btn-main" data-abc="true" onSubmit={handleOnSubmit}> Realizar Compra </a> <a href="/" className="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continuar Comprando</a>
                                 </Card.Body>
                             </Card>
                         </Col>
