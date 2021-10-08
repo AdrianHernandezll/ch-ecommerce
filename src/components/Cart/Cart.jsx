@@ -13,91 +13,85 @@ import 'firebase/firestore'
 
 
 
-
-
-
-
-
-
-
-
 const Cart = () => {
 
-    // const [formData, setFormData] = useState({
-    //     name: '',
-    //     tel: '',
-    //     email: ''
-    // })
+    const [formData, setFormData] = useState({
+        name: '',
+        tel: '',
+        email: ''
+    })
 
     const { cartList, removeItem, totalPrice, addOneItem, removeOneItem, clear } = useCartContext();
     const isInCart = !cartList.length;
 
-    // const handleOnSubmit = (e) => {
-    //     e.preventDefault()
-    //     let orden = {}
+    const handleOnSubmit = (e) => {
+        e.preventDefault()
+        let orden = {}
 
-    //     orden.date = firebase.firestore.Timestamp.fromDate(new Date());
+        orden.date = firebase.firestore.Timestamp.fromDate(new Date());
 
-    //     orden.buyer = formData
+        orden.buyer = formData
 
-    //     orden.total = totalPrice();
+        orden.total = clear();
 
-    //     orden.items = cartList.map(cartItem => {
-    //         const id = cartItem.item.id;
-    //         const title = cartItem.item.title;
-    //         const price = cartItem.item.price * cartItem.quantity;
+        orden.items = cartList.map(cartItem => {
+            const id = cartItem.item.id;
+            const title = cartItem.item.title;
+            const price = cartItem.item.price * cartItem.quantity;
 
-    //         return { id, title, price }
-    //     })
-    // }
-
+            return { id, title, price }
+        })
 
 
-    // const db = getFirestore()
-    // db.collection('orders').add(orden)
-    //     .then(resp => alert(resp.id))
-    //     .catch(err => console.log(err))
-    //     .finally(() =>
-    //         setFormData({
-    //             name: '',
-    //             tel: '',
-    //             email: ''
-    //         }),
-    //         clear()
-    //     )
+        const db = getFirestore()
+        db.collection('orders').add(orden)
+            .then(resp => alert(resp.id))
+            .catch(err => console.log(err))
+            .finally(() =>
+                setFormData({
+                    name: '',
+                    tel: '',
+                    email: ''
+                })
+                //borrarLista()
+            )
 
 
-    //Actualiza todos los items que estan en el listado Cart del Context
-    // const itemsToUpdate = db.collection('items').where(
-    //     firebase.firestore.FieldPath.documentId(), 'in', cartList.map(i => i.object.id)
-    // )
+        //Actualiza todos los items que estan en el listado de Cart del CartContext
+        const itemsToUpdate = db.collection('items').where(
+            firebase.firestore.FieldPath.documentId(), 'in', cartList.map(i => i.item.id)
+        )
+
+        const batch = db.batch();
+
+        // por cada item restar del stock la cantidad de el carrito
+
+        itemsToUpdate.get()
+            .then(collection => {
+                collection.docs.forEach(docSnapshot => {
+                    batch.update(docSnapshot.ref, {
+                        stock: docSnapshot.data().stock - cartList.find(item => item.item.id === docSnapshot.id).quantity
+                    })
+                })
+
+                batch.commit().then(res => {
+                    console.log('resultado batch:', res)
+                })
+            })
 
 
-    // const batch = db.batch();
-
-    //Cada item resta del stock la cantidad del carrito
-    // itemsToUpdate.get()
-    //     .then(collection => {
-    //         collection.docs.forEach(docSnapshot => {
-    //             batch.update(docSnapshot.ref, {
-    //                 stock: docSnapshot.data().stock - cartList.find(item => item.object.id === docSnapshot.id).quantity
-    //             })
-    //         })
-
-    //         batch.commit().then(res => {
-    //             console.log('resultado batch:', res)
-    //         })
-    //     })
-
-    // function handleOnChange(e) {
-
-    //     setFormData({
-    //         ...formData,
-    //         [e.target.name]: e.target.value
-    //     })
+    }
 
 
-    // }
+    function handleOnChange(e) {
+
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
+
+
+    }
 
 
 
@@ -120,64 +114,66 @@ const Cart = () => {
     const FilledCard = () => (
 
         < >
-            <Table className="table-responsive">
+            <Col className="table-responsive">
                 {cartList.map((object, id) => (
                     <Card className="card d-block" key={id}>
-                        <Table className="table-responsive">
-                            <table className="table table-borderless table-shopping-cart">
-                                <thead className="text-muted">
-                                    <tr className="small text-uppercase text-center">
-                                        <th scope="col" width="120">Producto</th>
-                                        <th scope="col" width="120">Cantidad</th>
-                                        <th scope="col" width="120">Precio</th>
-                                        <th scope="col" className="text-right d-none d-md-block" width="200"></th>
-                                    </tr>
-                                </thead>
-                                <tbody className="text-center  justify-content-between">
-                                    <tr>
-                                        <td>
-                                            <figure className="itemside align-items-center mx-auto ">
-                                                <div variant="h5">{object.object.title}</div>
-                                                <div className="aside text-center"><img src={object.object.image} width="150" alt="img logo" /></div>
-                                            </figure>
-                                        </td>
-                                        <td className="d-flex justify-content-between">
-                                            <Button className="mt-5" disabled={object.quantity >= object.object.stock} onClick={() => addOneItem(id)}>+</Button>
-                                            <p className="mt-5 mx-auto">{object.quantity}</p>
-                                            <Button className="mt-5 " disabled={object.quantity <= 1} onClick={() => removeOneItem(id)}>-</Button>
-                                        </td>
-                                        <td className="mt-5">
-                                            <div className="price-wrap mt-5"> <var className="price">${object.object.price}</var> </div>
-                                        </td>
-                                        <td className="text-right d-none d-md-block"> <Button className="btn btn-light " data-abc="true" onClick={() => removeItem(object)}> <i className="far fa-trash-alt"></i></Button> </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
+                        <Table className="table table-borderless table-shopping-cart" >
+                            <thead className="text-muted">
+                                <tr className="small text-uppercase text-center">
+                                    <th scope="col" width="120">Producto</th>
+                                    <th scope="col" width="120">Cantidad</th>
+                                    <th scope="col" width="120">Precio</th>
+                                    <th scope="col" className="text-right d-none d-md-block" width="200"></th>
+                                </tr>
+                            </thead>
+                            <tbody className="text-center  justify-content-between">
+                                <tr>
+                                    <td>
+                                        <figure className="itemside align-items-center mx-auto ">
+                                            <div variant="h5">{object.object.title}</div>
+                                            <div className="aside text-center"><img src={object.object.image} width="150" alt="img logo" /></div>
+                                        </figure>
+                                    </td>
+                                    <td className="d-flex justify-content-between">
+                                        <Button className="mt-5" disabled={object.quantity >= object.object.stock} onClick={() => addOneItem(id)}>+</Button>
+                                        <p className="mt-5 mx-auto">{object.quantity}</p>
+                                        <Button className="mt-5 " disabled={object.quantity <= 1} onClick={() => removeOneItem(id)}>-</Button>
+                                    </td>
+                                    <td className="mt-5">
+                                        <div className="price-wrap mt-5"> <var className="price">${object.object.price}</var> </div>
+                                    </td>
+                                    <td className="text-right d-none d-md-block"> <Button className="btn btn-light " data-abc="true" onClick={() => removeItem(object)}> <i className="far fa-trash-alt"></i></Button> </td>
+                                </tr>
+                            </tbody>
                         </Table>
+
                     </Card>
                 ))}
 
-            </Table>
+            </Col>
 
-            <form
-
-            >
+            <form onSubmit={handleOnSubmit}
+                onChange={handleOnChange}>
                 <input
                     type='text'
                     placeholder='ingrese el nombre'
                     name='name'
+                    value={formData.name}
 
                 />
                 <input
                     type='text'
                     placeholder='ingrese el nro de tel'
                     name='tel'
+                    value={formData.tel}
 
                 />
                 <input
                     type='text'
                     placeholder='ingrese el email'
                     name='email'
+                    value={formData.email}
 
                 />
                 <input
@@ -185,7 +181,6 @@ const Cart = () => {
                     placeholder='Confirme el mail '
                     name='email2'
                 />
-                <button>Terminar Compra</button>
             </form>
 
 
@@ -195,13 +190,14 @@ const Cart = () => {
         <Container fluid>
             <h3 className="text-center">Cart Items:</h3>
             {isInCart ? <EmptyCard /> :
-                <Col className="d-flex justify-content-center">
+                <Col className="d-flex justify-content-center" >
                     <Row>
                         <Col md={9}>
                             <FilledCard />
                         </Col>
                         <Col md={3} className="mx-auto">
-                            <Card className="card">
+                            <Card className="card"
+                            >
                                 <Card.Body className="card-body text-center">
                                     <dl className="dlist-align">
                                         <dt>Subtotal:</dt>
@@ -212,7 +208,7 @@ const Cart = () => {
                                         <dd className="text-right text-success ml-3">${totalPrice() + 150}+Envio</dd>
                                     </dl>
 
-                                    <hr /> <a href="/" className="btn btn-out btn-primary btn-square btn-main" data-abc="true"> Realizar Compra </a> <a href="/" className="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continuar Comprando</a>
+                                    <hr /> <a type="submit" className="btn btn-out btn-primary btn-square btn-main" data-abc="true"> Realizar Compra </a> <a href="/" className="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continuar Comprando</a>
                                 </Card.Body>
                             </Card>
                         </Col>
