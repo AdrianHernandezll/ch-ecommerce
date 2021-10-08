@@ -23,95 +23,98 @@ import 'firebase/firestore'
 
 const Cart = () => {
 
-    const [formData, setFormData] = useState({
-        name: '',
-        tel: '',
-        email: ''
-    })
+    // const [formData, setFormData] = useState({
+    //     name: '',
+    //     tel: '',
+    //     email: ''
+    // })
 
     const { cartList, removeItem, totalPrice, addOneItem, removeOneItem, clear } = useCartContext();
     const isInCart = !cartList.length;
 
-    const handleOnSubmit = (e) => {
-        e.preventDefault()
-        let orden = {}
+    // const handleOnSubmit = (e) => {
+    //     e.preventDefault()
+    //     let orden = {}
 
-        orden.date = firebase.firestore.Timestamp.fromDate(new Date());
+    //     orden.date = firebase.firestore.Timestamp.fromDate(new Date());
 
-        orden.buyer = formData
+    //     orden.buyer = formData
 
-        orden.total = totalPrice();
+    //     orden.total = totalPrice();
 
-        orden.items = cartList.map(cartItem => {
-            const id = cartItem.item.id;
-            const title = cartItem.item.title;
-            const price = cartItem.item.price * cartItem.quantity;
+    //     orden.items = cartList.map(cartItem => {
+    //         const id = cartItem.item.id;
+    //         const title = cartItem.item.title;
+    //         const price = cartItem.item.price * cartItem.quantity;
 
-            return { id, title, price }
-        })
-    }
+    //         return { id, title, price }
+    //     })
+    // }
 
 
 
-    const db = getFirestore()
-    db.collection('orders').add(orden)
-        .then(resp => alert(resp.id))
-        .catch(err => console.log(err))
-        .finally(() =>
-            setFormData({
-                name: '',
-                tel: '',
-                email: ''
-            }),
-            clear()
-        )
+    // const db = getFirestore()
+    // db.collection('orders').add(orden)
+    //     .then(resp => alert(resp.id))
+    //     .catch(err => console.log(err))
+    //     .finally(() =>
+    //         setFormData({
+    //             name: '',
+    //             tel: '',
+    //             email: ''
+    //         }),
+    //         clear()
+    //     )
 
 
     //Actualiza todos los items que estan en el listado Cart del Context
-    const itemsToUpdate = db.collection('items').where(
-        firebase.firestore.FieldPath.documentId(), 'in', cartList.map(i => i.object.id)
-    )
+    // const itemsToUpdate = db.collection('items').where(
+    //     firebase.firestore.FieldPath.documentId(), 'in', cartList.map(i => i.object.id)
+    // )
 
 
-    const batch = db.batch();
+    // const batch = db.batch();
 
     //Cada item resta del stock la cantidad del carrito
-    itemsToUpdate.get()
-        .then(collection => {
-            collection.docs.forEach(docSnapshot => {
-                batch.update(docSnapshot.ref, {
-                    stock: docSnapshot.data().stock - cartList.find(item => item.object.id === docSnapshot.id).quantity
-                })
-            })
+    // itemsToUpdate.get()
+    //     .then(collection => {
+    //         collection.docs.forEach(docSnapshot => {
+    //             batch.update(docSnapshot.ref, {
+    //                 stock: docSnapshot.data().stock - cartList.find(item => item.object.id === docSnapshot.id).quantity
+    //             })
+    //         })
 
-            batch.commit().then(res => {
-                console.log('resultado batch:', res)
-            })
-        })
+    //         batch.commit().then(res => {
+    //             console.log('resultado batch:', res)
+    //         })
+    //     })
 
-    function handleOnChange(e) {
+    // function handleOnChange(e) {
 
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        })
+    //     setFormData({
+    //         ...formData,
+    //         [e.target.name]: e.target.value
+    //     })
 
 
-    }
+    // }
 
 
 
 
     const EmptyCard = () => (
-        <>
-            <Col classname="d-flex align-items-center">
+        <Container>
+            <Col className="d-flex text-center flex-column">
                 <div variant="h5" className="text-center" >No tienes productos agregados, comienza a agregar productos </div>
                 <LinkContainer exact to="/">
-                    <Button >Ir a Productos</Button>
+                    <Col className="text-center mt-4">
+                        <Button>Ir a Productos</Button>
+                    </Col>
+
                 </LinkContainer>
             </Col>
 
-        </>
+        </Container>
     )
 
     const FilledCard = () => (
@@ -119,15 +122,15 @@ const Cart = () => {
         < >
             <Table className="table-responsive">
                 {cartList.map((object, id) => (
-                    <Card class="card d-block" key={id}>
-                        <Table class="table-responsive">
-                            <table class="table table-borderless table-shopping-cart">
-                                <thead class="text-muted">
-                                    <tr class="small text-uppercase text-center">
+                    <Card className="card d-block" key={id}>
+                        <Table className="table-responsive">
+                            <table className="table table-borderless table-shopping-cart">
+                                <thead className="text-muted">
+                                    <tr className="small text-uppercase text-center">
                                         <th scope="col" width="120">Producto</th>
                                         <th scope="col" width="120">Cantidad</th>
                                         <th scope="col" width="120">Precio</th>
-                                        <th scope="col" class="text-right d-none d-md-block" width="200"></th>
+                                        <th scope="col" className="text-right d-none d-md-block" width="200"></th>
                                     </tr>
                                 </thead>
                                 <tbody className="text-center  justify-content-between">
@@ -157,26 +160,25 @@ const Cart = () => {
             </Table>
 
             <form
-                onSubmit={handleOnSubmit}
-                onChange={handleOnChange}
+
             >
                 <input
                     type='text'
                     placeholder='ingrese el nombre'
                     name='name'
-                    value={formData.name}
+
                 />
                 <input
                     type='text'
                     placeholder='ingrese el nro de tel'
                     name='tel'
-                    value={formData.tel}
+
                 />
                 <input
                     type='text'
                     placeholder='ingrese el email'
                     name='email'
-                    value={formData.email}
+
                 />
                 <input
                     type='text'
