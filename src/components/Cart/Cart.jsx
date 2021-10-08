@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Container from 'react-bootstrap/Container'
 import { useCartContext } from '../../Context/CartContext';
 import Card from 'react-bootstrap/Card'
@@ -6,6 +7,13 @@ import Button from 'react-bootstrap/Button'
 import { Row } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 import { LinkContainer } from 'react-router-bootstrap';
+import { getFirestore } from '../../services/getFirebase';
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+
+
+
+
 
 
 
@@ -15,8 +23,84 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 const Cart = () => {
 
-    const { cartList, removeItem, totalPrice, addOneItem, removeOneItem } = useCartContext();
+    const [formData, setFormData] = useState({
+        name: '',
+        tel: '',
+        email: ''
+    })
+
+    const { cartList, removeItem, totalPrice, addOneItem, removeOneItem, clear } = useCartContext();
     const isInCart = !cartList.length;
+
+    const handleOnSubmit = (e) => {
+        e.preventDefault()
+        let orden = {}
+
+        orden.date = firebase.firestore.Timestamp.fromDate(new Date());
+
+        orden.buyer = formData
+
+        orden.total = totalPrice();
+
+        orden.items = cartList.map(cartItem => {
+            const id = cartItem.item.id;
+            const title = cartItem.item.title;
+            const price = cartItem.item.price * cartItem.quantity;
+
+            return { id, title, price }
+        })
+    }
+
+
+
+    const db = getFirestore()
+    db.collection('orders').add(orden)
+        .then(resp => alert(resp.id))
+        .catch(err => console.log(err))
+        .finally(() =>
+            setFormData({
+                name: '',
+                tel: '',
+                email: ''
+            }),
+            clear()
+        )
+
+
+    //Actualiza todos los items que estan en el listado Cart del Context
+    const itemsToUpdate = db.collection('items').where(
+        firebase.firestore.FieldPath.documentId(), 'in', cartList.map(i => i.object.id)
+    )
+
+
+    const batch = db.batch();
+
+    //Cada item resta del stock la cantidad del carrito
+    itemsToUpdate.get()
+        .then(collection => {
+            collection.docs.forEach(docSnapshot => {
+                batch.update(docSnapshot.ref, {
+                    stock: docSnapshot.data().stock - cartList.find(item => item.object.id === docSnapshot.id).quantity
+                })
+            })
+
+            batch.commit().then(res => {
+                console.log('resultado batch:', res)
+            })
+        })
+
+    function handleOnChange(e) {
+
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
+
+
+    }
+
+
+
 
     const EmptyCard = () => (
         <>
@@ -72,36 +156,69 @@ const Cart = () => {
 
             </Table>
 
+            <form
+                onSubmit={handleOnSubmit}
+                onChange={handleOnChange}
+            >
+                <input
+                    type='text'
+                    placeholder='ingrese el nombre'
+                    name='name'
+                    value={formData.name}
+                />
+                <input
+                    type='text'
+                    placeholder='ingrese el nro de tel'
+                    name='tel'
+                    value={formData.tel}
+                />
+                <input
+                    type='text'
+                    placeholder='ingrese el email'
+                    name='email'
+                    value={formData.email}
+                />
+                <input
+                    type='text'
+                    placeholder='Confirme el mail '
+                    name='email2'
+                />
+                <button>Terminar Compra</button>
+            </form>
+
+
         </>
     )
     return (
         <Container fluid>
             <h3 className="text-center">Cart Items:</h3>
-            {isInCart ? <EmptyCard /> : <Col className="d-flex justify-content-center">
-                <Row>
-                    <Col md={9}>
-                        <FilledCard />
-                    </Col>
-                    <Col md={3} className="mx-auto">
-                        <Card className="card">
-                            <Card.Body className="card-body text-center">
-                                <dl className="dlist-align">
-                                    <dt>Subtotal:</dt>
-                                    <dd className="text-right ml-3">${totalPrice()}</dd>
-                                </dl>
-                                <dl className="dlist-align">
-                                    <dt>Precio Total:</dt>
-                                    <dd className="text-right text-success ml-3">${totalPrice() + 150}+Envio</dd>
-                                </dl>
+            {isInCart ? <EmptyCard /> :
+                <Col className="d-flex justify-content-center">
+                    <Row>
+                        <Col md={9}>
+                            <FilledCard />
+                        </Col>
+                        <Col md={3} className="mx-auto">
+                            <Card className="card">
+                                <Card.Body className="card-body text-center">
+                                    <dl className="dlist-align">
+                                        <dt>Subtotal:</dt>
+                                        <dd className="text-right ml-3">${totalPrice()}</dd>
+                                    </dl>
+                                    <dl className="dlist-align">
+                                        <dt>Precio Total:</dt>
+                                        <dd className="text-right text-success ml-3">${totalPrice() + 150}+Envio</dd>
+                                    </dl>
 
-                                <hr /> <a href="/" className="btn btn-out btn-primary btn-square btn-main" data-abc="true"> Make Purchase </a> <a href="/" className="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continue Shopping</a>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
-            </Col>}
+                                    <hr /> <a href="/" className="btn btn-out btn-primary btn-square btn-main" data-abc="true"> Realizar Compra </a> <a href="/" className="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continuar Comprando</a>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
+                </Col>}
         </Container>
     )
+
 }
 
 export default Cart
