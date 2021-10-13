@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Container from 'react-bootstrap/Container'
 import { useCartContext } from '../../Context/CartContext';
 import Card from 'react-bootstrap/Card'
@@ -15,15 +17,23 @@ import 'firebase/firestore'
 
 const Cart = () => {
 
+
+    const { cartList, removeItem, totalPrice, addOneItem, removeOneItem, clear } = useCartContext();
+    const isInCart = !cartList.length;
+
+    const notify = () =>
+        setTimeout(() => {
+            toast("Orden Realizada Correctamente")
+            setTimeout(() => {
+                clear()
+            })
+        }, 3000);;
+
     const [formData, setFormData] = useState({
         name: '',
         tel: '',
         email: ''
     })
-
-    const { cartList, removeItem, totalPrice, addOneItem, removeOneItem } = useCartContext();
-    const isInCart = !cartList.length;
-
     const handleOnSubmit = (e) => {
         e.preventDefault()
         let orden = {}
@@ -45,7 +55,7 @@ const Cart = () => {
 
         const db = getFirestore()
         db.collection('orders').add(orden)
-            .then(resp => alert(resp.id))
+            .then(resp => console.log(resp.id))
             .catch(err => console.log(err))
             .finally(() =>
                 setFormData({
@@ -185,7 +195,9 @@ const Cart = () => {
                     value={formData.email}
                     onChange={handleOnChange}
                 />
-                <Button type="submit" className="btn btn-out btn-primary btn-square btn-main" data-abc="true" > Realizar Compra </Button>
+
+                <Button type="submit" className="btn btn-out btn-primary btn-square btn-main" data-abc="true" onClick={notify} > Realizar Compra </Button>
+
             </form>
 
 
@@ -214,8 +226,9 @@ const Cart = () => {
                                     </dl>
 
                                     <hr />
-
+                                    <Button className="btn btn-out btn-danger btn-square btn-main" data-abc="true" onClick={() => { clear() }}> Vaciar Carrito </Button>
                                     <Button className="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continuar Comprando</Button>
+                                    <ToastContainer />
                                 </Card.Body>
                             </Card>
                         </Col>

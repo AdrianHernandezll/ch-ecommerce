@@ -51,7 +51,7 @@ export default function CartContextProvider({ children }) {
     }
 
     function clear() {
-        cartList([])
+        setCartList([])
     }
 
     return (
