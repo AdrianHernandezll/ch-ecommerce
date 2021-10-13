@@ -18,7 +18,7 @@ const NavBar = () => {
 
     return (
         <>
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
                 <Container>
                     <LinkContainer exact to="/">
                         <Navbar.Brand>
