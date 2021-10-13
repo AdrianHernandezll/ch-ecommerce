@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button'
+import { Col } from 'react-bootstrap';
 
 
 
@@ -44,14 +45,20 @@ const ItemCount = ({ stock, initial, onAdd }) => {
                 </div>
 
                 :
-                <div className="d-flex justify-content-around">
-                    <Link to={'/'}>
-                        <Button className="btn btn-primary px-3">Continuar Compra</Button>
-                    </Link>
-                    <Link to={'/cart'}>
-                        <Button className="btn btn-success">Finalizar Compra</Button>
-                    </Link>
-                </div>
+                <Col className="d-flex mt-5 mx-1">
+                    <Col>
+                        <Link to={'/'}>
+                            <Button variant="outline-primary" className="btn btn-lg text-uppercase px-3">Continuar Compra</Button>
+                        </Link>
+
+                    </Col>
+                    <Col>
+                        <Link to={'/cart'}>
+                            <Button variant="outline-success" className="btn btn-lg text-uppercase">Finalizar Compra</Button>
+                        </Link>
+
+                    </Col>
+                </Col>
 
             }
         </>
