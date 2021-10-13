@@ -7,7 +7,6 @@ import { Col, Row } from 'react-bootstrap';
 
 
 const ItemDetail = ({ object }) => {
-    // const [countSelect, setCountSelect] = useState(0);
 
     const { addToCart } = useCartContext();
 
