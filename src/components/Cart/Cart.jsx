@@ -21,7 +21,7 @@ const Cart = () => {
         email: ''
     })
 
-    const { cartList, removeItem, totalPrice, addOneItem, removeOneItem, clear } = useCartContext();
+    const { cartList, removeItem, totalPrice, addOneItem, removeOneItem } = useCartContext();
     const isInCart = !cartList.length;
 
     const handleOnSubmit = (e) => {
@@ -30,14 +30,14 @@ const Cart = () => {
 
         orden.date = firebase.firestore.Timestamp.fromDate(new Date());
 
-        orden.buyer = formData
+        orden.buyer = formData;
 
-        orden.total = clear();
+        orden.total = totalPrice();
 
         orden.items = cartList.map(cartItem => {
-            const id = cartItem.item.id;
-            const title = cartItem.item.title;
-            const price = cartItem.item.price * cartItem.quantity;
+            const id = cartItem.object.id;
+            const title = cartItem.object.title;
+            const price = cartItem.object.price * cartItem.quantity;
 
             return { id, title, price }
         })
@@ -59,7 +59,7 @@ const Cart = () => {
 
         //Actualiza todos los items que estan en el listado de Cart del CartContext
         const itemsToUpdate = db.collection('items').where(
-            firebase.firestore.FieldPath.documentId(), 'in', cartList.map(i => i.item.id)
+            firebase.firestore.FieldPath.documentId(), 'in', cartList.map(i => i.object.id)
         )
 
         const batch = db.batch();
@@ -70,7 +70,7 @@ const Cart = () => {
             .then(collection => {
                 collection.docs.forEach(docSnapshot => {
                     batch.update(docSnapshot.ref, {
-                        stock: docSnapshot.data().stock - cartList.find(item => item.item.id === docSnapshot.id).quantity
+                        stock: docSnapshot.data().stock - cartList.find(item => item.object.id === docSnapshot.id).quantity
                     })
                 })
 
@@ -153,7 +153,7 @@ const Cart = () => {
 
             </Col>
 
-            <form >
+            <form onSubmit={handleOnSubmit}>
                 <input
                     type='text'
                     placeholder='ingrese el nombre'
@@ -182,8 +182,10 @@ const Cart = () => {
                     type='text'
                     placeholder='Confirme el mail '
                     name='email2'
+                    value={formData.email}
                     onChange={handleOnChange}
                 />
+                <Button type="submit" className="btn btn-out btn-primary btn-square btn-main" data-abc="true" > Realizar Compra </Button>
             </form>
 
 
@@ -211,7 +213,9 @@ const Cart = () => {
                                         <dd className="text-right text-success ml-3">${totalPrice() + 150}+Envio</dd>
                                     </dl>
 
-                                    <hr /> <a href="/" type="submit" className="btn btn-out btn-primary btn-square btn-main" data-abc="true" onSubmit={handleOnSubmit}> Realizar Compra </a> <a href="/" className="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continuar Comprando</a>
+                                    <hr />
+
+                                    <Button className="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continuar Comprando</Button>
                                 </Card.Body>
                             </Card>
                         </Col>
