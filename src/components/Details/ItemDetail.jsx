@@ -18,7 +18,7 @@ const ItemDetail = ({ object }) => {
     return (
 
         <>
-            <Card>
+            <Card style={{ width: '90%' }}>
                 <Row>
                     <Col sm={6} className=" border-right mx-auto mt-2 px-1 px-md-2 px-lg-4 py-5">
                         <article className="gallery-wrap">
