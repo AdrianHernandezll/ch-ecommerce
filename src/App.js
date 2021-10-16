@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import CartForm from './components/Cart/CartForm'
 import { NavBar } from './components';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
@@ -26,6 +26,7 @@ function App() {
             <Route exact path='/item/:id' component={ItemDetailContainer} />
 
             <Route exact path="/Cart" component={Cart} />
+            <Route exact path='/CartForm' component={CartForm} />
           </Switch>
 
 

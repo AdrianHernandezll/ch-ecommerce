@@ -2,9 +2,13 @@ import { useState } from 'react';
 import { getFirestore } from '../../services/getFirebase';
 import firebase from 'firebase/app';
 import { toast } from 'react-toastify';
+import { useCartContext } from '../../Context/CartContext';
+import Button from 'react-bootstrap/Button';
 
 
 const CartForm = () => {
+
+    const { clear, totalPrice, cartList, } = useCartContext();
     const notify = () =>
         setTimeout(() => {
             toast("Orden Realizada Correctamente")
@@ -95,7 +99,6 @@ const CartForm = () => {
                 name='name'
                 value={formData.name}
                 onChange={handleOnChange}
-
             />
             <input
                 type='text'
@@ -111,7 +114,6 @@ const CartForm = () => {
                 name='email'
                 value={formData.email}
                 onChange={handleOnChange}
-
             />
             <input
                 type='text'
