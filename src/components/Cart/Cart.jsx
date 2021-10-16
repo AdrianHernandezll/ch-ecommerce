@@ -37,9 +37,9 @@ const Cart = () => {
         < >
             <Col className="table-responsive">
                 {cartList.map((object, id) => (
-                    <Card className="card d-block" key={id}>
+                    <Card className="card " key={id}>
 
-                        <Table className="table table-borderless table-shopping-cart" >
+                        <Table className="table-responsive table-borderless table-shopping-cart" >
                             <thead className="text-muted">
                                 <tr className="small text-uppercase text-center">
                                     <th scope="col" width="120">Producto</th>
@@ -48,7 +48,7 @@ const Cart = () => {
                                     <th scope="col" className="text-right d-none d-md-block" width="200"></th>
                                 </tr>
                             </thead>
-                            <tbody className="text-center  justify-content-between">
+                            <tbody className="text-center  justify-content-between flex-column">
                                 <tr>
                                     <td>
                                         <figure className="itemside align-items-center mx-auto ">
@@ -58,7 +58,7 @@ const Cart = () => {
                                     </td>
                                     <td className="d-flex justify-content-between">
                                         <Button className="mt-5" disabled={object.quantity >= object.object.stock} onClick={() => addOneItem(id)}>+</Button>
-                                        <p className="mt-5 mx-auto">{object.quantity}</p>
+                                        <p className="mt-5 ">{object.quantity}</p>
                                         <Button className="mt-5 " disabled={object.quantity <= 1} onClick={() => removeOneItem(id)}>-</Button>
                                     </td>
                                     <td className="mt-5">
@@ -81,7 +81,7 @@ const Cart = () => {
             {isInCart ? <EmptyCard /> :
                 <Col className="d-flex justify-content-center" >
                     <Row>
-                        <Col md={9}>
+                        <Col md={9} xs={12}>
                             <FilledCard />
                         </Col>
                         <Col md={3} className="mx-auto">
@@ -98,7 +98,7 @@ const Cart = () => {
                                     </dl>
 
                                     <hr />
-                                    <div className="d-flex flex-row justify-content-between align-items-center ">
+                                    <div className="d-flex flex-column align-items-center ">
                                         <Button variant="outline-danger" className="btn btn-out btn-square btn-main mt-2" data-abc="true" onClick={() => { clear() }}> Vaciar Carrito </Button>
                                         <Button variant="outline-success" className="btn btn-out btn-square btn-main mt-2" data-abc="true">Continuar Comprando</Button>
                                     </div>

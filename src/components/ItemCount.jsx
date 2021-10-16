@@ -33,16 +33,16 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     return (
         <>
             {changeBoton ?
-                <div className="justify-content-space-between">
+                <Col className="d-flex flex-column justify-content-space-between">
                     <div className="text-center">
                         <p>Stock:{count}</p>
                     </div>
-                    <div className="d-flex text-center mx-auto">
+                    <div className="d-flex text-center mx-auto mx-sm-auto">
                         <button className="btn btn-lg btn-outline-primary text-uppercase" disabled={count === stock} onClick={addItem}><i className="fas fa-plus"></i></button>
                         <button className="btn btn-lg btn-outline-primary text-uppercase mx-2 " onClick={agregarCarrito} disabled={count === 0}><i className="fas fa-shopping-cart"></i>Agregar al Carro</button>
                         <button className="btn btn-lg btn-outline-primary text-uppercase" disabled={count <= 0} onClick={onSubtract}><i className="fas fa-minus"></i></button>
                     </div>
-                </div>
+                </Col>
 
                 :
                 <Col className="d-flex mt-5 mx-1">

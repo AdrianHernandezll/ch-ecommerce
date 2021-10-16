@@ -20,14 +20,14 @@ const ItemDetail = ({ object }) => {
         <>
             <Card style={{ width: '90%' }} className="mt-4 mx-auto" >
                 <Row>
-                    <Col sm={6} className=" border-right mx-auto mt-2 px-1 px-md-2 px-lg-4 py-5">
+                    <Col sm={12} md={6} className=" border-right mx-auto mt-2 px-1 px-md-2 px-lg-4 py-5">
                         <article className="gallery-wrap">
                             <div className="img-big-wrap">
                                 <img src={object.image} style={{ width: '100%' }} alt="logo" />
                             </div>
                         </article>
                     </Col>
-                    <Col sm={6} className="border-right">
+                    <Col sm={12} md={6} className="border-right">
                         <article className="card-body  mx-auto px-1 px-md-2 px-lg-4 py-5 ">
                             <h3 className="title mb-3">{object.title}</h3>
 
