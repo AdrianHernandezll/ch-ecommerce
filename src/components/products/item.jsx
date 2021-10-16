@@ -14,7 +14,7 @@ const Item = ({ item }) => {
 
 
         <>
-            <Card style={{ width: '20rem' }} className="my-4">
+            <Card style={{ width: '20rem' }} className="my-4 mx-auto">
                 <Card.Img variant="top" src={item.image} />
                 <Card.Body>
                     <Card.Title className="text-center">{item.title}</Card.Title>

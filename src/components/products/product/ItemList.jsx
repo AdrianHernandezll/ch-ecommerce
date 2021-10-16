@@ -58,7 +58,7 @@ const ItemList = ({ idCategory }) => {
                     </Card.Body>
                 </Card> :
                     items.map(item => (
-                        <Col xs={2} lg={4} sm={12} md={6} key={item.id}>
+                        <Col lg={4} sm={12} md={6} key={item.id}>
                             <Item item={item} />
                         </Col>
                     ))}
