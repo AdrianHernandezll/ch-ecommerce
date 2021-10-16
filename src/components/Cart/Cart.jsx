@@ -98,8 +98,10 @@ const Cart = () => {
                                     </dl>
 
                                     <hr />
-                                    <Button className="btn btn-out btn-danger btn-square btn-main" data-abc="true" onClick={() => { clear() }}> Vaciar Carrito </Button>
-                                    <Button className="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continuar Comprando</Button>
+                                    <div className="d-flex flex-row justify-content-between align-items-center ">
+                                        <Button variant="outline-danger" className="btn btn-out btn-square btn-main mt-2" data-abc="true" onClick={() => { clear() }}> Vaciar Carrito </Button>
+                                        <Button variant="outline-success" className="btn btn-out btn-square btn-main mt-2" data-abc="true">Continuar Comprando</Button>
+                                    </div>
                                     <ToastContainer />
                                 </Card.Body>
                             </Card>
