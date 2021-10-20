@@ -50,7 +50,7 @@ const ItemDetail = ({ object }) => {
                                 <p className="text-success">A todo el pais</p>
                             </div>
                             <div className="text-center mx-auto d-flex">
-                                <ItemCount stock={5} initial={1} onAdd={onAdd} />
+                                <ItemCount stock={object.quantity} initial={1} onAdd={onAdd} />
                             </div>
                         </article>
                     </Col>

@@ -1,4 +1,3 @@
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Container from 'react-bootstrap/Container'
 import { useCartContext } from '../../Context/CartContext';
@@ -26,7 +25,6 @@ const Cart = () => {
                     <Col className="text-center mt-4">
                         <Button>Ir a Productos</Button>
                     </Col>
-
                 </LinkContainer>
             </Col>
         </Container>
@@ -96,13 +94,15 @@ const Cart = () => {
                                         <dt>Precio Total:</dt>
                                         <dd className="text-right text-success ml-3">${totalPrice() + 150}+Envio</dd>
                                     </dl>
+                                    <Button variant="outline-danger" className="btn btn-out btn-square btn-main mt-2 mx-1" data-abc="true" onClick={() => { clear() }}> Vaciar Carrito </Button>
+                                    <Button variant="outline-primary" className="btn btn-out btn-square btn-main mt-2" data-abc="true">Continuar Comprando</Button>
 
                                     <hr />
                                     <div className="d-flex flex-column align-items-center ">
-                                        <Button variant="outline-danger" className="btn btn-out btn-square btn-main mt-2" data-abc="true" onClick={() => { clear() }}> Vaciar Carrito </Button>
-                                        <Button variant="outline-success" className="btn btn-out btn-square btn-main mt-2" data-abc="true">Continuar Comprando</Button>
+                                        <LinkContainer exact to="/CartForm">
+                                            <Button variant="outline-success" className="btn btn-out btn-square btn-main mt-2" disabled={isInCart} data-abc="true">Finalizar Compra</Button>
+                                        </LinkContainer>
                                     </div>
-                                    <ToastContainer />
                                 </Card.Body>
                             </Card>
                         </Col>

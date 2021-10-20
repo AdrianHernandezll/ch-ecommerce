@@ -1,21 +1,22 @@
 import { useState } from 'react';
 import { getFirestore } from '../../services/getFirebase';
 import firebase from 'firebase/app';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import { useCartContext } from '../../Context/CartContext';
 import Button from 'react-bootstrap/Button';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 
 
 const CartForm = () => {
 
-    const { clear, totalPrice, cartList, } = useCartContext();
+    const { totalPrice, cartList, } = useCartContext();
     const notify = () =>
         setTimeout(() => {
             toast("Orden Realizada Correctamente")
             setTimeout(() => {
-                clear()
-            })
-        }, 3000);;
+                window.location.href = '/'
+            }, 3000)
+        });
 
     const [formData, setFormData] = useState({
         name: '',
@@ -92,39 +93,83 @@ const CartForm = () => {
     }
 
     return (
-        <form onSubmit={handleOnSubmit}>
-            <input
-                type='text'
-                placeholder='ingrese el nombre'
-                name='name'
-                value={formData.name}
-                onChange={handleOnChange}
-            />
-            <input
-                type='text'
-                placeholder='ingrese el nro de tel'
-                name='tel'
-                value={formData.tel}
-                onChange={handleOnChange}
+        <Container>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
 
             />
-            <input
-                type='text'
-                placeholder='ingrese el email'
-                name='email'
-                value={formData.email}
-                onChange={handleOnChange}
-            />
-            <input
-                type='text'
-                placeholder='Confirme el mail '
-                name='email2'
-                value={formData.email}
-                onChange={handleOnChange}
-            />
-            <Button type="submit" className="btn btn-out btn-primary btn-square btn-main" data-abc="true" onClick={notify} > Realizar Compra </Button>
-        </form>
+
+            <Row>
+                <Form onSubmit={handleOnSubmit} className="mx-auto text-center">
+                    <Col lg={5} className='mx-auto'>
+                        <Form.Control
+                            size="lg"
+                            type="text"
+                            placeholder="Ingrese su nombre completo"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleOnChange}
+                            className="mt-4 mb-2 text-center"
+
+                        />
+                    </Col>
+                    <Col lg={5} className="mx-auto">
+                        <Form.Control
+                            size="lg"
+                            type="number"
+                            placeholder="Ingrese su numero"
+                            name="tel"
+                            value={formData.tel}
+                            onChange={handleOnChange}
+                            className="mb-2 text-center"
+                        />
+
+                    </Col>
+                    <Col lg={5} className="mx-auto" >
+                        <Form.Control
+                            size="lg"
+                            type="email"
+                            placeholder="Ingrese su Email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleOnChange}
+                            className="mb-2 text-center"
+                        />
+
+                    </Col>
+                    <Col lg={5} className="mx-auto">
+                        <Form.Control
+                            size="lg"
+                            type="email"
+                            placeholder="Confirme su Email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleOnChange}
+                            className="mb-2 text-center"
+                        />
+
+                    </Col>
+                    <Col lg={5} className="mx-auto mt-3">
+                        <Button variant="outline-success" type="submit" className="btn btn-out btn-square btn-main px-3" data-abc="true" onClick={notify} > Realizar Compra </Button>
+                    </Col>
+                </Form>
+
+            </Row>
+
+
+
+        </Container>
+
     )
 }
+
 
 export default CartForm
