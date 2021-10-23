@@ -5,10 +5,13 @@ import { toast, ToastContainer } from 'react-toastify';
 import { useCartContext } from '../../Context/CartContext';
 import Button from 'react-bootstrap/Button';
 import { Container, Row, Col, Form } from 'react-bootstrap';
+// import { useForm } from 'react-hook-form';
+import useForm from './useForm';
 
 
 const CartForm = () => {
-
+    // const { register, errors } = useForm();
+    const form = useForm();
     const { totalPrice, cartList, } = useCartContext();
     const notify = () =>
         setTimeout(() => {
@@ -29,7 +32,7 @@ const CartForm = () => {
 
         orden.date = firebase.firestore.Timestamp.fromDate(new Date());
 
-        orden.buyer = formData;
+        orden.buyer = { name: form.name, tel: form.number, email: form.email };
 
         orden.total = totalPrice();
 
@@ -107,31 +110,41 @@ const CartForm = () => {
 
             />
 
-            <Row>
-                <Form onSubmit={handleOnSubmit} className="mx-auto text-center">
+
+            <Form onSubmit={handleOnSubmit} className="mx-auto text-center">
+                <Row>
                     <Col lg={5} className='mx-auto'>
                         <Form.Control
                             size="lg"
                             type="text"
-                            placeholder="Ingrese su nombre completo"
+                            // {...register("message", {
+                            //     required: "Required",
+                            // })}
+                            placeholder="Ingrese su Nombre"
                             name="name"
-                            value={formData.name}
-                            onChange={handleOnChange}
+                            value={form.name}
+                            onChange={(e) => form.setName(e.target.value)}
                             className="mt-4 mb-2 text-center"
 
                         />
+                        <span className="text-danger text-small d-block mb-2">
+                            {form.errors[0] ? "Debe ser mayor a 3 caracteres" : ""}
+                        </span>
                     </Col>
-                    <Col lg={5} className="mx-auto">
+                    <Col lg={5} className="mx-auto mt-4">
                         <Form.Control
                             size="lg"
                             type="number"
+
                             placeholder="Ingrese su numero"
                             name="tel"
-                            value={formData.tel}
-                            onChange={handleOnChange}
+                            value={form.number}
+                            onChange={(e) => form.setNumber(e.target.value)}
                             className="mb-2 text-center"
                         />
-
+                        <span className="text-danger text-small d-block mb-2">
+                            {form.errors[1] ? "No debe ser menor a 9 caracteres" : ""}
+                        </span>
                     </Col>
                     <Col lg={5} className="mx-auto" >
                         <Form.Control
@@ -139,11 +152,13 @@ const CartForm = () => {
                             type="email"
                             placeholder="Ingrese su Email"
                             name="email"
-                            value={formData.email}
-                            onChange={handleOnChange}
+                            value={form.email}
+                            onChange={(e) => form.setEmail(e.target.value)}
                             className="mb-2 text-center"
                         />
-
+                        <span className="text-danger text-small d-block mb-2">
+                            {form.errors[2] ? "Email no valido" : ""}
+                        </span>
                     </Col>
                     <Col lg={5} className="mx-auto">
                         <Form.Control
@@ -151,18 +166,21 @@ const CartForm = () => {
                             type="email"
                             placeholder="Confirme su Email"
                             name="email"
-                            value={formData.email}
-                            onChange={handleOnChange}
+                            value={form.emailVerification}
+                            onChange={(e) => form.setEmailVerification(e.target.value)}
                             className="mb-2 text-center"
                         />
-
+                        <span className="text-danger text-small d-block mb-2">
+                            {form.errors[3] ? "Los emails no son iguales" : ""}
+                        </span>
                     </Col>
                     <Col lg={5} className="mx-auto mt-3">
-                        <Button variant="outline-success" type="submit" className="btn btn-out btn-square btn-main px-3" data-abc="true" onClick={notify} > Realizar Compra </Button>
+                        <Button disabled={form.disabled} variant="outline-success" type="submit" className="btn btn-out btn-square btn-main px-3" data-abc="true" onClick={notify} > Realizar Compra </Button>
                     </Col>
-                </Form>
+                </Row>
+            </Form>
 
-            </Row>
+
 
 
 
