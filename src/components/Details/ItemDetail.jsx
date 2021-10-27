@@ -4,8 +4,6 @@ import { useCartContext } from '../../Context/CartContext';
 import { Col, Row } from 'react-bootstrap';
 
 
-
-
 const ItemDetail = ({ object }) => {
 
     const { addToCart } = useCartContext();
