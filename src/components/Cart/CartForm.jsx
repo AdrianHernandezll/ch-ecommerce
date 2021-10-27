@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { getFirestore } from '../../services/getFirebase';
 import firebase from 'firebase/app';
 import { toast, ToastContainer } from 'react-toastify';
