@@ -1,11 +1,6 @@
 import 'react-toastify/dist/ReactToastify.css';
-import Container from 'react-bootstrap/Container'
 import { useCartContext } from '../../Context/CartContext';
-import Card from 'react-bootstrap/Card'
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button'
-import { Row } from 'react-bootstrap';
-import Table from 'react-bootstrap/Table';
+import { Card, Col, Button, Container, Row, Table } from 'react-bootstrap/'
 import { LinkContainer } from 'react-router-bootstrap';
 import 'firebase/firestore'
 
