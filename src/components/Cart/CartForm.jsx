@@ -21,7 +21,7 @@ const CartForm = () => {
             }, 3000)
         });
 
-    const [formatData, setFormData] = useState({
+    const [setFormData] = useState({
         name: '',
         tel: '',
         email: ''
