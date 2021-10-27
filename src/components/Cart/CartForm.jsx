@@ -21,11 +21,6 @@ const CartForm = () => {
             }, 3000)
         });
 
-    const [formData, setFormData] = useState({
-        name: '',
-        tel: '',
-        email: ''
-    })
     const handleOnSubmit = (e) => {
         e.preventDefault()
         let orden = {}
@@ -85,15 +80,7 @@ const CartForm = () => {
     }
 
 
-    function handleOnChange(e) {
 
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        })
-
-
-    }
 
     return (
         <Container>
