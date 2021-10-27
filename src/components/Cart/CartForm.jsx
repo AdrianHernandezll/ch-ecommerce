@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { getFirestore } from '../../services/getFirebase';
 import firebase from 'firebase/app';
 import { toast, ToastContainer } from 'react-toastify';
@@ -20,6 +21,11 @@ const CartForm = () => {
             }, 3000)
         });
 
+    const [formatData, setFormData] = useState({
+        name: '',
+        tel: '',
+        email: ''
+    })
     const handleOnSubmit = (e) => {
         e.preventDefault()
         let orden = {}
