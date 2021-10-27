@@ -16,4 +16,14 @@
 
 •[Firebase]: Exelente y potente herramienta para traer datos desde el backend.
 
+•[React]: UserMemo para hacer validaciones de datos,UseState para almacenar datos. Herramientas por defecto para iniciar el servidor y editar.
+
+
+# INSTALACION
+
+ch-eccomerce requiere la instalacion de NodeJs: https://nodejs.org/es/
+
+Instalar las dependencias e iniciar el servidor. • Npm install - Npm Start
+
+
 
