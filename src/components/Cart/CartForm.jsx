@@ -3,9 +3,7 @@ import { getFirestore } from '../../services/getFirebase';
 import firebase from 'firebase/app';
 import { toast, ToastContainer } from 'react-toastify';
 import { useCartContext } from '../../Context/CartContext';
-import Button from 'react-bootstrap/Button';
-import { Container, Row, Col, Form } from 'react-bootstrap';
-// import { useForm } from 'react-hook-form';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import useForm from './useForm';
 
 
@@ -55,7 +53,6 @@ const CartForm = () => {
                     tel: '',
                     email: ''
                 })
-                //borrarLista()
             )
 
 
@@ -109,15 +106,11 @@ const CartForm = () => {
                         <Form.Control
                             size="lg"
                             type="text"
-                            // {...register("message", {
-                            //     required: "Required",
-                            // })}
                             placeholder="Ingrese su Nombre"
                             name="name"
                             value={form.name}
                             onChange={(e) => form.setName(e.target.value)}
                             className="mt-4 mb-2 text-center"
-
                         />
                         <span className="text-danger text-small d-block mb-2">
                             {form.errors[0] ? "Debe ser mayor a 3 caracteres" : ""}
