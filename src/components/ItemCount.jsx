@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button'
-import { Col } from 'react-bootstrap';
+import { Col, Button } from 'react-bootstrap';
 
 
 

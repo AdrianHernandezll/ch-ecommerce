@@ -8,7 +8,6 @@ import useForm from './useForm';
 
 
 const CartForm = () => {
-    // const { register, errors } = useForm();
     const form = useForm();
     const { totalPrice, cartList, } = useCartContext();
     const notify = () =>
@@ -74,14 +73,12 @@ const CartForm = () => {
                 })
 
                 batch.commit().then(res => {
-                    console.log('resultado batch:', res)
+                    res
                 })
             })
 
 
     }
-
-
 
 
     return (
