@@ -1,10 +1,5 @@
 import { useState, useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
-import Placeholder from 'react-bootstrap/Placeholder';
-import Card from 'react-bootstrap/Card'
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col'
-
+import { Container, Placeholder, Card, Row, Col } from 'react-bootstrap';
 import Item from '../item';
 import { getFirestore } from '../../../services/getFirebase';
 

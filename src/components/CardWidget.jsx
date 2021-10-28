@@ -1,6 +1,5 @@
 import React from 'react';
-import Badge from 'react-bootstrap/Badge';
-import Button from 'react-bootstrap/Button';
+import { Badge, Button } from 'react-bootstrap';
 import { useCartContext } from '../Context/CartContext';
 
 
