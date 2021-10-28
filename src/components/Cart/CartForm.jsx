@@ -72,9 +72,8 @@ const CartForm = () => {
                     })
                 })
 
-                batch.commit().then(res => {
-                    res
-                })
+                batch.commit().then(res => res
+                )
             })
 
 
